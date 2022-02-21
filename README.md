@@ -2,9 +2,9 @@
 
 ## Equip:
 **A02**
-* https://github.com/chyeyexx7
-* https://github.com/buildcrash
-* https://github.com/sergiLopez
+* [Chang Ye](https://github.com/chyeyexx7)
+* [Sergi Lopez](https://github.com/buildcrash)
+* [Noel Vázquez](https://github.com/sergiLopez)
 * estudiant 4
 
 ### Features (marqueu les que heu fet i qui les ha fet)
