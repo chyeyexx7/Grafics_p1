@@ -2,8 +2,8 @@
 #define SETUP_H
 
 #include "Serializable.h"
-#include <QCborMap>
-#include <QCborValue>
+//#include <QCborMap>
+//#include <QCborValue>
 #include <QFile>
 
 #include "glm/glm.hpp"

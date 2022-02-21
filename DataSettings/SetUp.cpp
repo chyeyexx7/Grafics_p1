@@ -8,9 +8,9 @@ SetUp::SetUp()
 
 bool SetUp::load(Serializable::SaveFormat saveFormat, QString nameFile)
 {
-    QFile loadFile(saveFormat == Json
-        ? QString(nameFile.append(".json"))
-        : QString(nameFile.append(".dat")));
+    QFile loadFile(/*saveFormat == Json
+        ? */QString(nameFile.append(".json"))/*
+        : QString(nameFile.append(".dat"))*/);
     if (!loadFile.open(QIODevice::ReadOnly)) {
         qWarning("Couldn't open the setup file.");
         return false;
@@ -19,9 +19,9 @@ bool SetUp::load(Serializable::SaveFormat saveFormat, QString nameFile)
     QByteArray saveData = loadFile.readAll();
 
     QJsonParseError error;
-    QJsonDocument loadDoc(saveFormat == Json
-        ? QJsonDocument::fromJson(saveData, &error)
-        : QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject()));
+    QJsonDocument loadDoc(/*saveFormat == Json
+        ? */QJsonDocument::fromJson(saveData, &error)
+        /*: QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject())*/);
 
 
     if (loadDoc.isNull()) {
@@ -51,9 +51,9 @@ bool SetUp::save(SetUp::SaveFormat saveFormat, QString nameFile) const
 
     QJsonObject setUpObject;
     write(setUpObject);
-    saveFile.write(saveFormat == Json
-        ? QJsonDocument(setUpObject).toJson()
-        : QCborValue::fromJsonValue(setUpObject).toCbor());
+    saveFile.write(/*saveFormat == Json
+        ? */QJsonDocument(setUpObject).toJson()
+        /*: QCborValue::fromJsonValue(setUpObject).toCbor()*/);
 
     return true;
 }

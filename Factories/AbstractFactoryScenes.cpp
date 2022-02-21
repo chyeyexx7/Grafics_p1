@@ -12,9 +12,9 @@ shared_ptr<SceneFactory> AbstractFactoryScenes::getSceneFactory(Serializable::Sa
 
     QByteArray saveData = loadFile.readAll();
     QJsonParseError error;
-    QJsonDocument loadDoc(saveFormat == Serializable::Json
-        ? QJsonDocument::fromJson(saveData, &error)
-        : QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject()));
+    QJsonDocument loadDoc(/*saveFormat == Serializable::Json
+        ?*/ QJsonDocument::fromJson(saveData, &error)
+        /*: QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject())*/);
 
     if (loadDoc.isNull()) {
         qWarning("Parse error in json scene file.");
