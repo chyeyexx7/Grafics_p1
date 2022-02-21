@@ -1,10 +1,10 @@
 # VisRayTrace 2021-22
 
 ## Equip:
-**lletra i numero de l'equip**
-* estudiant 1
-* estudiant 2
-* estudiant 3
+**A02**
+* https://github.com/chyeyexx7
+* https://github.com/buildcrash
+* https://github.com/sergiLopez
 * estudiant 4
 
 ### Features (marqueu les que heu fet i qui les ha fet)
