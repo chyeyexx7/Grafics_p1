@@ -1,0 +1,46 @@
+{
+"scene": "dadesEuropa",
+"typeScene": "REALDATA",
+"base" : {
+   "type": "FITTEDPLANE",
+   "normal": [0.0, 1.0, 0.0],
+   "point": [0.0, -1.0, 0.0],
+   "pmin": [-10.0, -10.0],
+   "pmax": [2.0, 2.0],
+   "material": {
+       "type": "MaterialTextura",
+       "ka": [0.2, 0.2, 0.2],
+       "kd": [0.7,0.6,0.5],
+       "ks": [0.7, 0.7, 0.7],
+       "shininess": 10.0,
+       "textureFile": "://resources/europa.png"
+    }
+},
+"Real": {
+  "minPoint": [-5, -5],
+  "maxPoint": [5, 5]
+},
+"Virtual": {
+  "minPoint": [-5,  0, -5],
+  "maxPoint": [ 5,  5,  5]
+},"properties": [
+{
+"name": "temperatura",
+"gyzmo": "sphere",
+"minValue": 0,
+"maxValue": 4,
+"colorMap": "COLOR_MAP_TYPE_PLASMA",
+"material": {
+    "type": "lambertian",
+    "ka": [0.2, 0.2, 0.2],
+    "kd": [0.7,0.6,0.5],
+    "ks": [0.7, 0.7, 0.7],
+    "shininess": 10.0
+ },
+"data": [
+ [ 0, -1, 1.5],
+ [ -10, -10, 3]
+ ]
+ }
+ ]
+}

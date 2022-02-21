@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/twoSpheres.json</file>
+        <file>resources/meshExample.json</file>
+        <file>resources/data0.json</file>
+        <file>resources/setupRenderTwoSpheres.json</file>
+        <file>resources/oneSphere.json</file>
+        <file>resources/setupRenderOneSphere.json</file>
+        <file>resources/BCNmap.png</file>
+        <file>resources/BCNmap2.png</file>
+        <file>resources/cube.obj</file>
+        <file>resources/dadesEuropa.json</file>
+        <file>resources/data10.json</file>
+        <file>resources/earth1.png</file>
+        <file>resources/europa.png</file>
+        <file>resources/map.png</file>
+        <file>resources/mapBCN.png</file>
+        <file>resources/mapZoom.png</file>
+        <file>resources/setupDataEuropa.json</file>
+        <file>resources/setupRender.json</file>
+        <file>resources/spheres.json</file>
+        <file>resources/spheresLambertianes.json</file>
+        <file>resources/setupRenderSpheres.json</file>
+        <file>resources/dadesBCN.json</file>
+        <file>resources/dadesBCNOneValue.json</file>
+        <file>resources/setupDataBCN.json</file>
+        <file>resources/setupDataBCNOneValue.json</file>
+    </qresource>
+</RCC>

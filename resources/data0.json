@@ -1,0 +1,31 @@
+{
+"scene": "Data0",
+"typeScene": "REALDATA",
+"Real": {
+  "minPoint": [-5, -5],
+  "maxPoint": [5, 5]
+},
+"Virtual": {
+  "minPoint": [-5,  0, -5],
+  "maxPoint": [ 5,  2.0,  5]
+},
+"properties": [
+{
+"name": "temperatura",
+"gyzmo": "sphere",
+"minValue": 0,
+"maxValue": 2,
+"colorMap": "COLOR_MAP_TYPE_INFERNO",
+"material": {
+    "type": "lambertian",
+    "ka": [0.2, 0.2, 0.2],
+    "kd": [0.7,0.6,0.5],
+    "ks": [0.7, 0.7, 0.7],
+    "shininess": 10.0
+ },
+"data": [
+ [ -2, -1, 0.5]
+]
+}
+]
+}
