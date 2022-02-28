@@ -25,5 +25,6 @@
         <file>resources/dadesBCNOneValue.json</file>
         <file>resources/setupDataBCN.json</file>
         <file>resources/setupDataBCNOneValue.json</file>
+        <file>resources/twoSpheresElectricboogaloooo.json</file>
     </qresource>
 </RCC>

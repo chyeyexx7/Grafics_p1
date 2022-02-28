@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include <vector>
 
 Scene::Scene()
 {
@@ -31,9 +32,17 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
     // Una possible solucio es cridar el mètode "hit" per a tots els objectes i quedar-se amb la interseccio
     // mes propera a l'observador, en el cas que n'hi hagi més d'una.
     // Cada vegada que s'intersecta un objecte s'ha d'actualitzar el HitInfo del raig.
+    bool hayHit = false;
+    //float closest = std::numeric_limits<float>::max();
+    //HitInfo tInfo;
+    for(int i = 0; i < this->objects.size(); i++){
+        if(this->objects.at(i)->closestHit(raig, info)){
+            hayHit = true;
+            raig.setTmax(info.t);
+        }
+    }
 
-
-    return false;
+    return hayHit;
 }
 
 /*
@@ -67,7 +76,15 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth ) {
 
     ray2 = normalize(ray.getDirection());
     // TODO: A canviar el càlcul del color en les diferents fases (via el mètode de shading)
-    color = 0.5f*vec3(ray2.x+1, ray2.y+1, ray2.z+1);
+    HitInfo info;
+    if(closestHit(ray, info)){
+        //color = info.mat_ptr->Kd;             //renderitzar el color de la esfera
+        //color = (info.normal + 1.0f)/ 2.0f;   //renderitzar normals de la esfera
+        color = vec3(1,1,1) * (info.t/2.0f);    //renderitzar distancia del pixel
+    }else{
+        float v = (ray.getDirection().y + 1.0f)/ 2.0f;  //altura del pixel
+        color = this->colorTop * v + this->colorDown * (1 - v);
+    }
     return color;
 }
 

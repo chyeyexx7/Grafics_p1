@@ -12,7 +12,10 @@ int main(int argc, char **argv) {
     // Cal que aquí no hi posis extensió (directament anirà a buscar el fitxer amb extensió .json
 
     // Exemple d'escena virtual carregada des de json:
-     auto controller = make_shared<Controller>(Serializable::Json, "://resources/oneSphere", "://resources/setupRenderOneSphere");
+    //auto controller = make_shared<Controller>(Serializable::Json, "://resources/oneSphere", "://resources/setupRenderOneSphere"); //Una esfera
+    //auto controller = make_shared<Controller>(Serializable::Json, "://resources/twoSpheres", "://resources/setupRenderOneSphere");  //dues esferes
+    auto controller = make_shared<Controller>(Serializable::Json, "://resources/twoSpheresElectricboogaloooo", "://resources/setupRenderOneSphere");  //mes esferes
+    //auto controller = make_shared<Controller>(Serializable::Json, "://resources/data0", "://resources/setupRenderOneSphere");  //data0
 
     // Exemple d'escena de dades carregada des de json:
     // auto controller = make_shared<Controller>(Serializable::Json, "://resources/data0", "://resources/setupRenderTwoSpheres");
