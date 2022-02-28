@@ -5,7 +5,7 @@
 * [Chang Ye](https://github.com/chyeyexx7)
 * [Sergi Lopez](https://github.com/buildcrash)
 * [Noel Vázquez](https://github.com/sergiLopez)
-* estudiant 4
+* [Alejandro couciero](https://github.com/Couci27)
 
 ### Features (marqueu les que heu fet i qui les ha fet)
 - Fase 1
