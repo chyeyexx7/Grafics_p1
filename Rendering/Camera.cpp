@@ -33,6 +33,7 @@ void Camera::computeAtributes(vec3 lookfrom,
     auto h = tan(theta/2);
     float window_height = 2.0 * h;
     float window_width = aspect_ratio * window_height;
+
     aspectRatio = aspect_ratio;
     lens_radius = lensRadius;
 

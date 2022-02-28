@@ -1,5 +1,5 @@
 {
-"renderType": "IMAGE",
+"renderType": "ONLINE",
 "output": "resultat.ppm",
 "camera": {
     "lookFrom": [2.5, 3.0, 0.5],
