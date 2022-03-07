@@ -1,5 +1,5 @@
 #include "Scene.h"
-
+#include <iostream>
 Scene::Scene()
 {
     pmin.x = -0.5f;  pmin.y = -0.5f; pmin.z = -0.5f;
@@ -32,8 +32,15 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
     // mes propera a l'observador, en el cas que n'hi hagi més d'una.
     // Cada vegada que s'intersecta un objecte s'ha d'actualitzar el HitInfo del raig.
 
+    bool hitted = false;
+    for (int i = 0; i < this->objects.size(); i++){
+        if (this->objects.at(i)->closestHit(raig, info)){
+            raig.setTmax(info.t);
+            hitted = true;
+        }
+    }
 
-    return false;
+    return hitted;
 }
 
 /*
@@ -67,7 +74,19 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth ) {
 
     ray2 = normalize(ray.getDirection());
     // TODO: A canviar el càlcul del color en les diferents fases (via el mètode de shading)
-    color = 0.5f*vec3(ray2.x+1, ray2.y+1, ray2.z+1);
+    // Convert [-1,1] to [0,1]
+    float height = ((ray2.y - (-1.0)) * (1 - 0)) / (1 - (-1)) + 0;
+
+    // Set color if we hit an object
+    HitInfo info;
+    if (this->closestHit(ray, info)) {
+        color = info.mat_ptr->Kd;
+    }
+    // If we didn't hit any object, set color of the background
+    else {
+        color = this->colorDown*(1-height) + this->colorTop*height;
+    }
+
     return color;
 }
 
