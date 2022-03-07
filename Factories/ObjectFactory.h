@@ -19,7 +19,7 @@ public:
         TRIANGLE,
         MESH,
         CYLINDER,
-        FITTEDPLANE
+        FITTEDPLANE,
     } OBJECT_TYPES;
 
     static ObjectFactory& getInstance() {

@@ -26,5 +26,6 @@
         <file>resources/setupDataBCN.json</file>
         <file>resources/setupDataBCNOneValue.json</file>
         <file>resources/twoSpheresElectricboogaloooo.json</file>
+        <file>resources/triangles.json</file>
     </qresource>
 </RCC>

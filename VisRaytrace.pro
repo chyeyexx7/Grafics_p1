@@ -42,13 +42,15 @@ SOURCES += \
         Modelling/Objects/Object.cpp \
         Modelling/Objects/Plane.cpp \
         Modelling/Objects/Sphere.cpp \
+        Modelling/Objects/Triangle.cpp \
         Modelling/TG/TG.cpp \
         Modelling/TG/TranslateTG.cpp \
         Rendering/Camera.cpp \
         Rendering/RayTracing.cpp \
         Rendering/RayTracingGLU.cpp \
         Rendering/RayTracingPPM.cpp \
-        Rendering/RayTracingTemps.cpp
+        Rendering/RayTracingTemps.cpp \
+    Modelling/Objects/triangle.cpp
 
 
 RESOURCES += \
@@ -93,6 +95,7 @@ HEADERS += \
     Modelling/Objects/Object.h \
     Modelling/Objects/Plane.h \
     Modelling/Objects/Sphere.h \
+    Modelling/Objects/Triangle.h \
     Modelling/Ray.h \
     Modelling/Scene.h \
     Modelling/TG/TG.h \
@@ -543,4 +546,5 @@ HEADERS += \
     glm/gtx/wrap.inl \
     glm/gtx/wrap.inl \
     glm/virtrev/xstream.hpp \
-    glm/virtrev/xstream.hpp
+    glm/virtrev/xstream.hpp \
+    Modelling/Objects/triangle.h
