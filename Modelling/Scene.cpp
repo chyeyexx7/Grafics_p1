@@ -33,6 +33,7 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
     // Cada vegada que s'intersecta un objecte s'ha d'actualitzar el HitInfo del raig.
 
     bool hitted = false;
+    // Hay que optimizar esta función en el futuro!!
     for (int i = 0; i < this->objects.size(); i++){
         if (this->objects.at(i)->closestHit(raig, info)){
             raig.setTmax(info.t);
