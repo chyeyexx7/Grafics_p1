@@ -5,7 +5,7 @@
 * [Chang Ye](https://github.com/chyeyexx7)
 * [Sergi Lopez](https://github.com/buildcrash)
 * [Noel Vázquez](https://github.com/sergiLopez)
-* [Alejandro couciero](https://github.com/Couci27)
+* [Alejandro Couciero](https://github.com/Couci27)
 
 ### Features (marqueu les que heu fet i qui les ha fet)
 - Fase 1
@@ -16,11 +16,13 @@
         - [ ] 3.1.a. Mapping de mons virtuals
           - Estudiants que hi han participat
         - [ ] 3.1.b. Hit Triangle
-          - Estudiants que hi han participat
+          - Noel Vázquez
+          - Alejandro Couciero
         - [ ] 3.1.c. Hit Boundary Object
           - Estudiants que hi han participat
         - [ ] 3.1.d. Hit Cilindre
-          - Estudiants que hi han participat
+          - Chang Ye
+          - Sergi Lopez
     - Creació de REAL DATA
         - [ ] 3.2.a. Transformacions Translació i Escalat amb gizmos esferes
           - Estudiants que hi han participat
