@@ -49,6 +49,7 @@ SOURCES += \
         Rendering/RayTracingGLU.cpp \
         Rendering/RayTracingPPM.cpp \
         Rendering/RayTracingTemps.cpp \
+    Modelling/Objects/Triangle.cpp
 
 
 RESOURCES += \
@@ -544,3 +545,4 @@ HEADERS += \
     glm/gtx/wrap.inl \
     glm/virtrev/xstream.hpp \
     glm/virtrev/xstream.hpp \
+    Modelling/Objects/Triangle.h

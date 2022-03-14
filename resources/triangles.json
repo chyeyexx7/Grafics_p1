@@ -18,21 +18,6 @@
     }
 },
 {
-  "name": "Esfera gran",
-  "type": "sphere",
-  "center": [0.0,-100.5,-1.0],
-  "radius": 100.0,
-  "material": {
-    "type": "lambertian",
-    "ka": [0.2, 0.2, 0.2],
-    "kd": [0.6, 0.8, 0.0],
-    "ks": [1.0, 1.0, 1.0],
-    "shininess": 10.0,
-    "kt": [0.0, 0.0, 0.0],
-    "nut": 0.0
-    }
-},
-{
 "name": "Esfera metalica",
 "type":  "sphere",
   "center": [-3.0,1.0,0.0],
@@ -61,6 +46,22 @@
     "kt": [0.3, 0.3, 0.3],
     "nut": 1.5
     }
-  }
+  },
+  {
+  "name": "triangulo",
+  "type":  "triangle",
+    "p1": [0.0, 0.0, 0.0],
+    "p2": [-3.0,1.0,0.0],
+    "p3": [0.0,1.0,0.0],
+    "material": {
+      "type": "lambertian",
+      "ka": [0.2, 0.2, 0.2],
+      "kd": [0.7,0.6,0.5],
+      "ks": [0.7, 0.7, 0.7],
+      "shininess": 10.0,
+      "kt": [0.3, 0.3, 0.3],
+      "nut": 1.5
+      }
+    }
 ]
 }
