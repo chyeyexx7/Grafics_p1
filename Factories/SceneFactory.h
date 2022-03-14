@@ -3,8 +3,8 @@
 #include <string.h>
 #include <QString>
 
-#include <QCborMap>
-#include <QCborValue>
+//#include <QCborMap>
+//#include <QCborValue>
 #include "DataSettings/Serializable.h"
 #include "Modelling/Scene.h"
 #include "ObjectFactory.h"

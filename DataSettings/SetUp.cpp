@@ -19,9 +19,10 @@ bool SetUp::load(Serializable::SaveFormat saveFormat, QString nameFile)
     QByteArray saveData = loadFile.readAll();
 
     QJsonParseError error;
-    QJsonDocument loadDoc(saveFormat == Json
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData, &error));
+    /*QJsonDocument loadDoc(saveFormat == Json
         ? QJsonDocument::fromJson(saveData, &error)
-        : QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject()));
+        : QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject()));*/
 
 
     if (loadDoc.isNull()) {
@@ -51,9 +52,10 @@ bool SetUp::save(SetUp::SaveFormat saveFormat, QString nameFile) const
 
     QJsonObject setUpObject;
     write(setUpObject);
-    saveFile.write(saveFormat == Json
+    saveFile.write(QJsonDocument(setUpObject).toJson());
+    /*saveFile.write(saveFormat == Json
         ? QJsonDocument(setUpObject).toJson()
-        : QCborValue::fromJsonValue(setUpObject).toCbor());
+        : QCborValue::fromJsonValue(setUpObject).toCbor());*/
 
     return true;
 }
