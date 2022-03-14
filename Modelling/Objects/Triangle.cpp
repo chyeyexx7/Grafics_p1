@@ -57,7 +57,7 @@ bool Triangle::closestHit(Ray &r, HitInfo &info) const {
         }
     }
 
-    return true;
+    return false;
 }
 
 bool Triangle::hasHit(const Ray& r) const

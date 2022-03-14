@@ -9,6 +9,7 @@
 class Triangle: public Object
 {
 public:
+    Triangle() {};
     Triangle(vec3 v1,vec3 v2, vec3 v3, float data);
     Triangle(vec3 cord,float r, float d);
     virtual ~Triangle();

@@ -79,8 +79,8 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth ) {
     HitInfo info;
     if(closestHit(ray, info)){
         //color = info.mat_ptr->Kd;             //renderitzar el color de la esfera
-        //color = (info.normal + 1.0f)/ 2.0f;   //renderitzar normals de la esfera
-        color = vec3(1,1,1) * (info.t/2.0f);    //renderitzar distancia del pixel
+        color = (info.normal + 1.0f)/ 2.0f;   //renderitzar normals de la esfera
+        //color = vec3(1,1,1) * (info.t/2.0f);    //renderitzar distancia del pixel
     }else{
         float v = (ray.getDirection().y + 1.0f)/ 2.0f;  //altura del pixel
         color = this->colorTop * v + this->colorDown * (1 - v);

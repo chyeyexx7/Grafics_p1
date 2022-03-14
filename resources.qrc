@@ -27,5 +27,11 @@
         <file>resources/setupDataBCNOneValue.json</file>
         <file>resources/twoSpheresElectricboogaloooo.json</file>
         <file>resources/triangles.json</file>
+        <file>resources/cornell_box_config_vis_phong.json</file>
+        <file>resources/cornell_box_config_vis.json</file>
+        <file>resources/cornell_box_geometry_phong.json</file>
+        <file>resources/cornell_box_geometry_simple_phong.json</file>
+        <file>resources/cornell_box_geometry_simple.json</file>
+        <file>resources/cornell_box_geometry.json</file>
     </qresource>
 </RCC>
