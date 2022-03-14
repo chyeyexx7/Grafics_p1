@@ -150,6 +150,7 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
                                            MaterialFactory::getInstance().getIndexType(propinfo->material),
                                            mapping->props[i].second[j][2]));
 
+
              // Afegir objecte a l'escena
              scene->objects.push_back(o);
          }

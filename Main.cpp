@@ -14,7 +14,8 @@ int main(int argc, char **argv) {
     // Exemple d'escena virtual carregada des de json:
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/oneSphere", "://resources/setupRenderOneSphere"); //Una esfera
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/twoSpheres", "://resources/setupRenderOneSphere");  //dues esferes
-    auto controller = make_shared<Controller>(Serializable::Json, "://resources/cornell_box_geometry", "://resources/cornell_box_config_vis");  //mes esferes
+    //auto controller = make_shared<Controller>(Serializable::Json, "://resources/cornell_box_geometry", "://resources/cornell_box_config_vis");  //mes esferes
+    auto controller = make_shared<Controller>(Serializable::Json, "://resources/data0", "://resources/setupRenderOneSphere");  //mes esferes
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/data0", "://resources/setupRenderOneSphere");  //data0
 
     // Exemple d'escena de dades carregada des de json:
