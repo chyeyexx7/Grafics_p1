@@ -3,6 +3,7 @@
 #include "Modelling/Objects/Object.h"
 #include "Modelling/Objects/Sphere.h"
 #include "Modelling/Objects/Plane.h"
+#include "Modelling/Objects/Cylinder.h"
 
 #include "Modelling/Objects/Mesh.h"
 
