@@ -5,7 +5,7 @@
 {
 "name": "un cilindre",
 "type": "CYLINDER",
-"radious": 2.0,
+"radius": 2.0,
 "h": 4.0,
 "center": [0, 0, 0],
 "axis": [0, 1, 0],

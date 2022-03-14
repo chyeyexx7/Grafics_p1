@@ -28,7 +28,7 @@ public:
     // Getters
     vec3 getCenter() { return center;};
     vec3 getAxis() { return axis;};
-    float getHeight() { return height;};
+    float getHeight() { return h;};
     float getRadius() { return radius;}
 
 
@@ -42,7 +42,7 @@ private:
     // Numero PI
     const float PI = 3.141592653;
     // Altura cillindre
-    float height;
+    float h;
 
 };
 
