@@ -1,6 +1,6 @@
 {
-"renderType": "ONLINE",
-"output": "resultat.ppm",
+"renderType": "IMAGE",
+"output": "resultat2.ppm",
 "camera": {
     "lookFrom": [0.0, 6.0, 8.0],
     "lookAt:": [0, 0, -1],

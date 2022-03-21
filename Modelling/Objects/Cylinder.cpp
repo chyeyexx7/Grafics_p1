@@ -24,23 +24,10 @@ bool Cylinder::closestHit(Ray &raig, HitInfo& info) const {
      * Ecuaciones utilizadas para ver si hay colisión con superfície curvada
      **/
     int hasHit = 0;
-    float temp;
+    float temp, closest = std::numeric_limits<float>::max();
 
-    vec3 rayDir = normalize(raig.getDirection());
+    vec3 rayDir = raig.getDirection();
     vec3 oc = raig.getOrigin() - center;
-    float aux2 = raig.getOrigin().z - center.z;
-
-    float a = pow(rayDir.x, 2) + pow(rayDir.z, 2);
-    // b = 2*k
-    float k = rayDir.x*(oc.x) + rayDir.z*oc.z;
-    float c = pow(oc.x, 2) + pow(oc.z, 2) - pow(radius, 2);
-    float discriminant = k*k - a*c;
-
-    // Si a es 0 o discriminante negativo no existen soluciones, por tanto,
-    // no hay intersección
-
-    if(a < DBL_EPSILON || discriminant < 0)
-        return false;
 
     /**
      * Dos posibles soluciones para t si discriminante > 0 y una solución para discriminante = 0
@@ -51,61 +38,81 @@ bool Cylinder::closestHit(Ray &raig, HitInfo& info) const {
      * t0′ = (-k + SQRT(k^2 – a * c) ) / a
      * t1′ = (-k – SQRT(k^2 – a * c) ) / a
      **/
+    float a = pow(rayDir.x, 2) + pow(rayDir.z, 2);
+    // b = 2*k
+    float k = rayDir.x*(oc.x) + rayDir.z*oc.z;
+    float c = pow(oc.x, 2) + pow(oc.z, 2) - pow(radius, 2);
+    float discriminant = k*k - a*c;
 
-    float t0 = (-k + sqrt(discriminant)) / a;
-    float t1 = (-k - sqrt(discriminant)) / a;
-    float closest;
-    // Nos quedamos con la intersección más cercana
-    if(discriminant == 0) {
-        closest = t1;
-    } else {
-        closest = (t0 < t1) ? t0 : t1;
-    }
+    // Si a es 0 o discriminante negativo no existen soluciones, por tanto,
+    // no hay intersección
+    if(a != 0 || discriminant > 0) {
+        // De las dos posibles soluciones, nos quedamos con la intersección más cercana
+        // que esté dentro del rango de las alturas del cilindro
+        temp = (-k + sqrt(discriminant)) / a;
+        if(temp < raig.getTmax() && temp > raig.getTmin()) {
+            float height = raig.pointAtParameter(temp).y;
+            // Si el punto está dentro del cilindro (altura)
+            if (height >= center.y && height <= (center.y + h)) {
+                hasHit = 1;
+                closest = temp;
+            }
+        }
 
-    // Miramos si entra en contacto con la superfície curva
-    if(closest < raig.getTmax() && closest >=raig.getTmin()) {
-        float height = raig.pointAtParameter(closest).y;
-        // Si el punto está dentro del cilindro (altura)
-        if (height >= center.y && height <= (center.y + h)) {
-            hasHit = 1;
+        temp = (-k - sqrt(discriminant)) / a;
+        if(temp < closest && temp < raig.getTmax() && temp > raig.getTmin()) {
+            float height = raig.pointAtParameter(temp).y;
+            // Si el punto está dentro del cilindro (altura)
+            if (height >= center.y && height <=(center.y + h)) {
+                hasHit = 1;
+                closest = temp;
+            }
         }
     }
 
-    // Miramos si entra en contacto con las tapas del cilindro:
+    /**
+     * Procedemos a mirar si hay intersección
+     **/
     // Tapa superior
-      temp =  -(oc.y + h) / (rayDir.y);
-      float x = raig.pointAtParameter(temp).x;
-      float z = raig.pointAtParameter(temp).z;
-      if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
-          hasHit = 2;
-          closest = temp;
+    temp =  (-oc.y + h) / (rayDir.y);
+    float x = raig.pointAtParameter(temp).x;
+    float z = raig.pointAtParameter(temp).z;
+
+    if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
+      hasHit = 2;
+      closest = temp;
+    }
+    // Tapa inferior
+    temp =  (-oc.y) / rayDir.y;
+    x = raig.pointAtParameter(temp).x;
+    z = raig.pointAtParameter(temp).z;
+
+    if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
+      hasHit = 3;
+      closest = temp;
+    }
+
+    // Miramos si ha habido intersección entre la superfície curvada o las tapas
+    if (hasHit) {
+      info.t = closest;
+      info.p = raig.pointAtParameter(info.t);
+      info.mat_ptr = material.get();
+      switch(hasHit) {
+        case 1:
+          info.normal = normalize(vec3(info.p.x - center.x, 0, info.p.z - center.z);
+          break;
+      case 2:
+          info.normal = vec3(0.0, 1.0, 0.0);
+          cout << "top: " << info.p.y << endl;
+          break;
+      case 3:
+          info.normal = vec3(0.0, -1.0, 0.0);
+          cout << "bottom: " << info.p.y << endl;
+          break;
+      default:
+          break;
       }
-      // Tapa inferior
-      temp =  (oc.y) / rayDir.y;
-      x = raig.pointAtParameter(temp).x;
-      z = raig.pointAtParameter(temp).z;
-      if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
-          hasHit = 3;
-          closest = temp;
-      }
-      if (hasHit) {
-          info.t = closest;
-          info.p = raig.pointAtParameter(info.t);
-          info.mat_ptr = material.get();
-          switch(hasHit) {
-            case 1:
-              info.normal = (info.p - (center.x, raig.pointAtParameter(closest).y, center.z)) / radius;
-              break;
-          case 2:
-              info.normal = vec3(0, 1, 0);
-              break;
-          case 3:
-              info.normal = vec3(0, -1, 0);
-              break;
-          default:
-              break;
-          }
-      }
+    }
 
     return hasHit != 0;
 }
