@@ -54,11 +54,11 @@
     
     
 - Fase 3
-  - [x] Texture mapping en el pla
+  - [ ] Texture mapping en el pla
     - Estudiants que hi han participat
-  - [x] MaterialTextura
+  - [ ] MaterialTextura
     - Estudiants que hi han participat
-  - [x] Nova escena de dades
+  - [ ] Nova escena de dades
     - Estudiants que hi han participat
    
 - Parts opcionals
