@@ -93,7 +93,8 @@ void SceneFactoryData::read(const QJsonObject &json)
             o = ObjectFactory::getInstance().createObject(ObjectFactory::getInstance().getObjectType(objStr));
             o->read(jbase);
             // TO DO: Fase 1: Afegeix l'objecte base a l'escena
-            // scene->baseObj = o;
+            //scene->baseObj = o;
+            scene->objects.push_back(o);
         }
     }
     mapping = make_shared<InfoMapping>();
@@ -131,6 +132,7 @@ void SceneFactoryData::print(int indentation) const
 shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
     // TO DO: A partir de les dades carregades, cal contruir l'escena virtual amb tot colocat al seu lloc
     // i a la seva mida
+
     for (unsigned int i=0; i<mapping->props.size(); i++) {
         // A props[i].first es te la informació de la propietat per fer el mapping de cada valor
          shared_ptr<PropertyInfo> propinfo = mapping->props[i].first;
@@ -149,7 +151,7 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
              o->setMaterial(mapeigMaterial(propinfo, propinfo->colorMapType,
                                            MaterialFactory::getInstance().getIndexType(propinfo->material),
                                            mapping->props[i].second[j][2]));
-
+             o->aplicaTG(make_shared<ScaleTG>(0.3));
 
              // Afegir objecte a l'escena
              scene->objects.push_back(o);

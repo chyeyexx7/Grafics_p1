@@ -18,32 +18,58 @@ Mesh::Mesh(const QString &fileName, float data): Object(data)
 Mesh::~Mesh() {
     if (cares.size() > 0) cares.clear();
     if (vertexs.size() > 0) vertexs.clear();
+    if (triangles.size() > 0) triangles.clear();
 
 }
 
 void Mesh::construeix_triangles() {
     // TO DO Fase 1: A implementar
+    for (Cara c: cares) {
+        vector<int> temp = c.idxVertices;
+        vec3 p1(vertexs[temp[0]]);
+        vec3 p2(vertexs[temp[1]]);
+        vec3 p3(vertexs[temp[2]]);
+        //Triangle *triangle = new Triangle(p1, p2, p3, data);
+        triangles.push_back(Triangle(p1, p2, p3, data));
+    }
 }
 
 
 bool Mesh::closestHit(Ray &raig, HitInfo& info) const {
 
     // TODO Fase 1: A implementar
+    bool hasHit = false;
+    float closest = std::numeric_limits<float>::max();
+    HitInfo temp;
+    for(Triangle t: triangles) {
+        if(t.closestHit(raig, temp) && temp.t < closest) {
+            closest = temp.t;
+            info = temp;
+            hasHit = true;
+        }
+    }
 
-    return false;
-
+    return hasHit;
 }
 
 
 
 bool Mesh::hasHit(const Ray& raig) const {
     // TO DO Fase 1: A implementar
+    for(Triangle t: triangles) {
+        if(t.hasHit(raig)) {
+           return true;
+        }
+    }
     return false;
 
 }
 
 void Mesh::aplicaTG(shared_ptr<TG> t) {
     // TO DO: Fase 1
+    for(Triangle triangle: triangles) {
+        triangle.aplicaTG(t);
+    }
 }
 
 void Mesh::load (QString fileName) {
@@ -125,6 +151,8 @@ void Mesh::print(int indentation) const
     const QString indent(indentation * 2, ' ');
     QTextStream(stdout) << indent << "objFileName:\t" << nom << "\n";
 }
+
+
 
 
 

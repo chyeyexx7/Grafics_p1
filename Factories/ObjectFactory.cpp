@@ -13,6 +13,8 @@ shared_ptr<Object> ObjectFactory::createObject(OBJECT_TYPES t)
     case TRIANGLE:
         o = make_shared<Triangle>();
         break;
+    case FITTEDPLANE:
+        o = make_shared<FittedPlane>();
     default:
         break;
     }

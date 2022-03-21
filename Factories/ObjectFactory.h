@@ -4,6 +4,7 @@
 #include "Modelling/Objects/Sphere.h"
 #include "Modelling/Objects/Plane.h"
 #include "Modelling/Objects/Triangle.h"
+#include "Modelling/Objects/Fittedplane.h"
 #include "Modelling/Objects/Mesh.h"
 
 

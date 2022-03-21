@@ -50,8 +50,8 @@ SOURCES += \
         Rendering/RayTracingPPM.cpp \
         Rendering/RayTracingTemps.cpp \
     Modelling/Objects/Triangle.cpp \
-    Modelling/TG/RotateTG.cpp \
-    Modelling/TG/ScaleTG.cpp
+    Modelling/TG/ScaleTG.cpp \
+    Modelling/Objects/Fittedplane.cpp
 
 
 RESOURCES += \
@@ -548,5 +548,5 @@ HEADERS += \
     glm/virtrev/xstream.hpp \
     glm/virtrev/xstream.hpp \
     Modelling/Objects/Triangle.h \
-    Modelling/TG/RotateTG.h \
-    Modelling/TG/ScaleTG.h
+    Modelling/TG/ScaleTG.h \
+    Modelling/Objects/Fittedplane.h

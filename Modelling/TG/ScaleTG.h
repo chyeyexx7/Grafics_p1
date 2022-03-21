@@ -6,9 +6,9 @@ class ScaleTG : public TG
 public:
     glm::vec3 scalation;
     float escala;
-    Scale(glm::vec3 scale);
-    Scale(float esc);
-    ~Scale();
+    ScaleTG(glm::vec3 scale);
+    ScaleTG(float esc);
+    ~ScaleTG();
 
 };
 #endif // SCALE_H
