@@ -12,6 +12,10 @@ shared_ptr<Object> ObjectFactory::createObject(OBJECT_TYPES t)
         break;
     case CYLINDER:
         o = make_shared<Cylinder>();
+        break;
+    case MESH:
+        o = make_shared<Mesh>();
+        break;
     default:
         break;
     }
@@ -31,6 +35,9 @@ shared_ptr<Object> ObjectFactory::createObject( QString s, float data, OBJECT_TY
     case CYLINDER:
         o = make_shared<Cylinder>(data);
         break;
+    case MESH:
+        o = make_shared<Mesh>(s, data);
+        break;
     default:
         break;
     }
@@ -46,6 +53,8 @@ ObjectFactory::OBJECT_TYPES ObjectFactory::getIndexType(shared_ptr<Object> l) {
         return OBJECT_TYPES::PLANE;
     } else if (dynamic_pointer_cast<Cylinder>(l) != nullptr) {
         return OBJECT_TYPES::CYLINDER;
+    } else if (dynamic_pointer_cast<Mesh>(l) != nullptr) {
+        return OBJECT_TYPES::MESH;
     }
     return OBJECT_TYPES::SPHERE;
 }

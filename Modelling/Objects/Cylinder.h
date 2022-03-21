@@ -2,6 +2,7 @@
 #define CYLINDER_H
 
 #include "Object.h"
+#include "Sphere.h"
 #include "Modelling/Animation.h"
 #include "Modelling/TG/TranslateTG.h"
 
@@ -33,15 +34,15 @@ public:
 
 
 private:
-    // Centre del cillindre
+    // Centre del cilindro
     vec3 center;
-    // Axis del cillindre
+    // Axis del cilindro
     vec3 axis;
-    // Radi del cillindre
+    // Radio del cilindro
     float radius;
     // Numero PI
     const float PI = 3.141592653;
-    // Altura cillindre
+    // Altura cilindro
     float h;
 
 };

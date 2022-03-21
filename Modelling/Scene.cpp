@@ -82,8 +82,8 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth ) {
     HitInfo info;
     if (this->closestHit(ray, info)) {
         //color = info.mat_ptr->Kd;             //FASE 0 material esfera
-        //color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
-        color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
+        color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
+        //color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
     }
     // If we didn't hit any object, set color of the background
     else {

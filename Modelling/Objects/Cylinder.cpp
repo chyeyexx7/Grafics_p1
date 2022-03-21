@@ -16,7 +16,6 @@ Cylinder::Cylinder(float data) : Object(data) {
 
 # include <iostream>
 bool Cylinder::closestHit(Ray &raig, HitInfo& info) const {
-    bool hasHit = false;
     /**
      * https://inmensia.com/articulos/raytracing/cilindroycono.html
      * a = dx’^2 + dz’^2
@@ -24,14 +23,17 @@ bool Cylinder::closestHit(Ray &raig, HitInfo& info) const {
      * c = ox’^2 + oz’^2 – 1
      * Ecuaciones utilizadas para ver si hay colisión con superfície curvada
      **/
+    int hasHit = 0;
+    float temp;
+
     vec3 rayDir = normalize(raig.getDirection());
-    float aux1 = raig.getOrigin().x - center.x;
+    vec3 oc = raig.getOrigin() - center;
     float aux2 = raig.getOrigin().z - center.z;
 
     float a = pow(rayDir.x, 2) + pow(rayDir.z, 2);
     // b = 2*k
-    float k = rayDir.x*aux1 + rayDir.z*aux2;
-    float c = pow(aux1, 2) + pow(aux2, 2) - pow(radius, 2);
+    float k = rayDir.x*(oc.x) + rayDir.z*oc.z;
+    float c = pow(oc.x, 2) + pow(oc.z, 2) - pow(radius, 2);
     float discriminant = k*k - a*c;
 
     // Si a es 0 o discriminante negativo no existen soluciones, por tanto,
@@ -52,32 +54,64 @@ bool Cylinder::closestHit(Ray &raig, HitInfo& info) const {
 
     float t0 = (-k + sqrt(discriminant)) / a;
     float t1 = (-k - sqrt(discriminant)) / a;
-    float temp;
+    float closest;
     // Nos quedamos con la intersección más cercana
     if(discriminant == 0) {
-        temp = t1;
+        closest = t1;
     } else {
-        temp = (t0 < t1) ? t0 : t1;
+        closest = (t0 < t1) ? t0 : t1;
     }
 
-    // Miramos si estamos dentro del rango
-    if(temp < raig.getTmax() && temp >=raig.getTmin()) {
-        float height = raig.getOrigin().y + temp*rayDir.y;
+    // Miramos si entra en contacto con la superfície curva
+    if(closest < raig.getTmax() && closest >=raig.getTmin()) {
+        float height = raig.pointAtParameter(closest).y;
         // Si el punto está dentro del cilindro (altura)
         if (height >= center.y && height <= (center.y + h)) {
-            info.t = temp;
-            info.p = raig.pointAtParameter(temp);
-            info.normal = (info.p - this->center) / radius;
-            info.mat_ptr = material.get();
-            return true;
+            hasHit = 1;
         }
     }
 
-    return false;
+    // Miramos si entra en contacto con las tapas del cilindro:
+    // Tapa superior
+      temp =  -(oc.y + h) / (rayDir.y);
+      float x = raig.pointAtParameter(temp).x;
+      float z = raig.pointAtParameter(temp).z;
+      if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
+          hasHit = 2;
+          closest = temp;
+      }
+      // Tapa inferior
+      temp =  (oc.y) / rayDir.y;
+      x = raig.pointAtParameter(temp).x;
+      z = raig.pointAtParameter(temp).z;
+      if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
+          hasHit = 3;
+          closest = temp;
+      }
+      if (hasHit) {
+          info.t = closest;
+          info.p = raig.pointAtParameter(info.t);
+          info.mat_ptr = material.get();
+          switch(hasHit) {
+            case 1:
+              info.normal = (info.p - (center.x, raig.pointAtParameter(closest).y, center.z)) / radius;
+              break;
+          case 2:
+              info.normal = vec3(0, 1, 0);
+              break;
+          case 3:
+              info.normal = vec3(0, -1, 0);
+              break;
+          default:
+              break;
+          }
+      }
+
+    return hasHit != 0;
 }
 
 bool Cylinder::hasHit (const Ray& raig) const {
-    bool hasHit = false;
+    int hasHit = 0;
     /**
      * https://inmensia.com/articulos/raytracing/cilindroycono.html
      * a = dx’^2 + dz’^2

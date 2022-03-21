@@ -17,7 +17,7 @@ public:
     Sphere(vec3 cen, float r, float data);
     //Crea una esfera unitaria centrada al punt (0,0,0) i de radi 1
     Sphere(float data);
-    virtual ~Sphere() {}
+    virtual ~Sphere() {};
     virtual bool closestHit(Ray& r, HitInfo& info) const override;
     virtual bool hasHit(const Ray& r) const override;
     virtual void aplicaTG(shared_ptr<TG> tg) override;

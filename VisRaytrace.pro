@@ -30,7 +30,9 @@ SOURCES += \
         Main.cpp \
         Modelling/Animation.cpp \
         Modelling/Hitable.cpp \
+        Modelling/Objects/Cylinder.cpp \
         Modelling/Objects/Mesh.cpp \
+        Modelling/Objects/Triangle.cpp \
         Modelling/Scene.cpp \
         Modelling/Lights/Light.cpp \
         Modelling/Lights/PointLight.cpp \
@@ -89,10 +91,12 @@ HEADERS += \
     Modelling/Materials/Material.h \
     Modelling/Materials/Texture.h \
     Modelling/Objects/Cara.h \
+    Modelling/Objects/Cylinder.h \
     Modelling/Objects/Mesh.h \
     Modelling/Objects/Object.h \
     Modelling/Objects/Plane.h \
     Modelling/Objects/Sphere.h \
+    Modelling/Objects/Triangle.h \
     Modelling/Ray.h \
     Modelling/Scene.h \
     Modelling/TG/TG.h \
