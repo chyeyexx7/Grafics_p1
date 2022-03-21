@@ -19,7 +19,7 @@
           - Noel Vázquez
           - Alejandro Couciero
         - [ ] 3.1.c. Hit Boundary Object
-          - Estudiants que hi han participat
+          - Chang Ye
         - [ ] 3.1.d. Hit Cilindre
           - Chang Ye
           - Sergi Lopez
