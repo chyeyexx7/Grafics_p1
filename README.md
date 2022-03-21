@@ -15,12 +15,12 @@
     - Creació de nous objectes i interseccions (VIRTUALWORLD) 
         - [ ] 3.1.a. Mapping de mons virtuals
           - Estudiants que hi han participat
-        - [ ] 3.1.b. Hit Triangle
+        - [x] 3.1.b. Hit Triangle
           - Noel Vázquez
           - Alejandro Couciero
-        - [ ] 3.1.c. Hit Boundary Object
+        - [x] 3.1.c. Hit Boundary Object
           - Chang Ye
-        - [ ] 3.1.d. Hit Cilindre
+        - [x] 3.1.d. Hit Cilindre
           - Chang Ye
           - Sergi Lopez
     - Creació de REAL DATA
