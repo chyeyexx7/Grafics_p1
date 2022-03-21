@@ -49,20 +49,9 @@ void FittedPlane::aplicaTG(shared_ptr<TG> t){
 
 void FittedPlane::read (const QJsonObject &json)
 {
-    Object::read(json);
+    Plane::read(json);
 
-    if (json.contains("normal") && json["normal"].isArray()) {
-        QJsonArray auxVec = json["normal"].toArray();
-        normal[0] = auxVec[0].toDouble();
-        normal[1] = auxVec[1].toDouble();
-        normal[2] = auxVec[2].toDouble();
-    }
-    if (json.contains("point") && json["point"].isArray()) {
-        QJsonArray auxVec = json["point"].toArray();
-        point[0] = auxVec[0].toDouble();
-        point[1] = auxVec[1].toDouble();
-        point[2] = auxVec[2].toDouble();
-    }
+
     if (json.contains("pmin") && json["pmin"].isArray()) {
         QJsonArray auxVec = json["pmin"].toArray();
         minpoint[0] = auxVec[0].toDouble();
