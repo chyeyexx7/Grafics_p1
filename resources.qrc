@@ -33,5 +33,6 @@
         <file>resources/cornell_box_geometry_simple_phong.json</file>
         <file>resources/cornell_box_geometry_simple.json</file>
         <file>resources/cornell_box_geometry.json</file>
+        <file>resources/topdownPlane.json</file>
     </qresource>
 </RCC>

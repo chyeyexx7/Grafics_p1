@@ -133,6 +133,18 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
     // TO DO: A partir de les dades carregades, cal contruir l'escena virtual amb tot colocat al seu lloc
     // i a la seva mida
 
+    float maxX = mapping->Vxmax;
+    float maxY = mapping->Vymax;
+    float maxS = 1.0f;
+    float minX = mapping->Vxmin;
+    float minY = mapping->Vymin;
+    float minS = 0.1f;
+
+    float baseX = mapping->Rxmin;
+    float baseY = mapping->Rzmin;
+    float rangeX = mapping->Rxmax - baseX;
+    float rangeY = mapping->Rzmax - baseY;
+
     for (unsigned int i=0; i<mapping->props.size(); i++) {
         // A props[i].first es te la informació de la propietat per fer el mapping de cada valor
          shared_ptr<PropertyInfo> propinfo = mapping->props[i].first;
@@ -151,7 +163,22 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
              o->setMaterial(mapeigMaterial(propinfo, propinfo->colorMapType,
                                            MaterialFactory::getInstance().getIndexType(propinfo->material),
                                            mapping->props[i].second[j][2]));
-             o->aplicaTG(make_shared<ScaleTG>(0.3));
+             //vec3 mover = vec3(0,0,0);
+             //mapping->props[i].second[j]
+             //o->aplicaTG(make_shared<TranslateTG>());
+
+             //TRANSLATE
+             float rX = ((mapping->props[i].second[j][0] - baseX) / rangeX) * (maxX - minX) + minX;
+             float rY = -((mapping->props[i].second[j][1] - baseY) / rangeY) * (maxY - minY) + minY;
+             vec3 trans(rX, 0, rY);
+
+             o->aplicaTG(make_shared<TranslateTG>(trans));
+
+             //SCALE
+             //float realValue = mapping->props[i].second[j][0][1];
+             float realValue = mapping->props[i].second[j][2];
+             float value = (realValue - propinfo->minValue) / (realValue - propinfo->maxValue) * (maxS-minS) + minS;
+             o->aplicaTG(make_shared<ScaleTG>(value));
 
              // Afegir objecte a l'escena
              scene->objects.push_back(o);

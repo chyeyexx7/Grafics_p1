@@ -9,8 +9,10 @@ FittedPlane::FittedPlane(vec3 normal, vec3 pass_point, vec2 pass_min, vec2 pass_
 }
 
 bool FittedPlane::closestHit(Ray &r, HitInfo &info) const{
+    //HitInfo info2;
     if(Plane::closestHit(r, info)){
         if(info.p.x <= maxpoint.x && info.p.x >= minpoint.x && info.p.z <= maxpoint.y && info.p.z >= minpoint.y){
+            //info = info;
             return true;
         }
     }

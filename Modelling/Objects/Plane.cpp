@@ -48,7 +48,7 @@ bool Plane::closestHit(Ray &raig, HitInfo &info) const{
     temp/= normal[0]*vp[0] + normal[1]*vp[1] + normal[2]*vp[2];
 
     // Retornem false si no estem en el rang demanat
-    if (temp < raig.getTmax() && temp > raig.getTmin()) {
+    if (temp > raig.getTmax() || temp < raig.getTmin()) {
         return false;
     }
 
