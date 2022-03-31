@@ -170,7 +170,7 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
              //TRANSLATE
              float rX = ((mapping->props[i].second[j][0] - baseX) / rangeX) * (maxX - minX) + minX;
              float rY = -((mapping->props[i].second[j][1] - baseY) / rangeY) * (maxY - minY) + minY;
-             vec3 trans(rX, 0, rY);
+             vec3 trans(rX, 1, rY);
 
              o->aplicaTG(make_shared<TranslateTG>(trans));
 
@@ -178,6 +178,8 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
              //float realValue = mapping->props[i].second[j][0][1];
              float realValue = mapping->props[i].second[j][2];
              float value = (realValue - propinfo->minValue) / (realValue - propinfo->maxValue) * (maxS-minS) + minS;
+             value = 1.0f;
+             value = ((realValue - propinfo->minValue) / (propinfo->maxValue - propinfo->minValue)*(maxS-minS))+ minS;
              o->aplicaTG(make_shared<ScaleTG>(value));
 
              // Afegir objecte a l'escena

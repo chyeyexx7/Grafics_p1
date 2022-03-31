@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/oneSphere", "://resources/setupRenderOneSphere"); //Una esfera
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/twoSpheres", "://resources/setupRenderOneSphere");  //dues esferes
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/cornell_box_geometry", "://resources/cornell_box_config_vis");  //mes esferes
-    auto controller = make_shared<Controller>(Serializable::Json, "://resources/dadesBCNOneValue", "://resources/setupDataBCNOneValue");  //mes esferes
+    auto controller = make_shared<Controller>(Serializable::Json, "://resources/data10", "://resources/setupDataBCNOneValue");  //mes esferes
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/cube", "://resources/setupRenderOneSphere");  //mes esferes
     //auto controller = make_shared<Controller>(Serializable::Json, "://resources/data0", "://resources/setupRenderOneSphere");  //data0
 
