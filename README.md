@@ -22,7 +22,6 @@
           - Chang Ye
         - [x] 3.1.d. Hit Cilindre
           - Chang Ye
-          - Sergi Lopez
     - Creació de REAL DATA
         - [ ] 3.2.a. Transformacions Translació i Escalat amb gizmos esferes
           - Estudiants que hi han participat
@@ -38,11 +37,11 @@
 
 - Fase 2
     - [ ] Antialiasing
-      - Estudiants que hi han participat
+      - Chang Ye
     - [ ] Gamma Correction
-      - Estudiants que hi han participat
+      - Chang Ye
     - [ ] Blinn-Phong
-      - Estudiants que hi han participat
+      - Chang Ye
     - [ ] Ombres amb objectes opacs
       - Estudiants que hi han participat
     - [ ] Reflexions
