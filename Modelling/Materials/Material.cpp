@@ -39,6 +39,7 @@ vec3 Material::getDiffuse(vec2 point) const {
     return Kd;
 }
 
+
 void Material::read (const QJsonObject &json)
 {
     if (json.contains("ka") && json["ka"].isArray()) {

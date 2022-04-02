@@ -76,13 +76,14 @@ public:
     vec3 pmin, pmax;
 
     // Vector d'objectes continguts a l'escena
+    shared_ptr<FittedPlane> baseObj;
     std::vector<shared_ptr<Object>> objects;
     // FASE 2: Afegir llums a l'escena i la il.luminació global
     // Implementar els mètodes següents
     // Recordar cridar-los per omplir les dades des de fitxer
 
-    // void setGlobalLight(vec3 light);
-    // void setLights(std::vector<shared_ptr<Light>> lights);
+    void setGlobalLight(vec3 light);
+    void setLights(std::vector<shared_ptr<Light>> lights);
 
 private:
     // FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
@@ -90,9 +91,11 @@ private:
 
     //Llum ambient global
     vec3 globalLight;
+    //lights
+    std::vector<shared_ptr<Light>> lights;
 
     // FASE 2: Calcula si el punt "point" és a l'ombra
-    // float computeShadow(shared_ptr<Light> light, vec3 point);
+    float computeShadow(shared_ptr<Light> light, vec3 point);
 
     //Guarda si en les iteracions recursives de rayColor() en cas de no haver-hi hit
     // s'utilitza el color

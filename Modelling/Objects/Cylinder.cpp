@@ -121,8 +121,7 @@ bool Cylinder::hasHit (const Ray& raig) const {
      * c = ox² + oz² – radio²
      * Ecuaciones utilizadas para ver si hay colisión con superfície curvada
      **/
-    int hasHit = 0;
-    float temp, closest = std::numeric_limits<float>::max();
+    float temp;
 
     vec3 rayDir = raig.getDirection();
     vec3 oc = raig.getOrigin() - center;
@@ -152,18 +151,16 @@ bool Cylinder::hasHit (const Ray& raig) const {
             float height = raig.pointAtParameter(temp).y;
             // Si el punto está dentro del cilindro (altura)
             if (height >= center.y && height <= (center.y + h)) {
-                hasHit = 1;
-                closest = temp;
+                return true;
             }
         }
 
         temp = (-k - sqrt(discriminant)) / a;
-        if(temp < closest && temp < raig.getTmax() && temp > raig.getTmin()) {
+        if(temp < raig.getTmax() && temp > raig.getTmin()) {
             float height = raig.pointAtParameter(temp).y;
             // Si el punto está dentro del cilindro (altura)
             if (height >= center.y && height <=(center.y + h)) {
-                hasHit = true;
-                closest = temp;
+                return true;
             }
         }
     }
@@ -178,20 +175,20 @@ bool Cylinder::hasHit (const Ray& raig) const {
     float x = raig.pointAtParameter(temp).x;
     float z = raig.pointAtParameter(temp).z;
 
-    if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
-      hasHit = true;
-      closest = temp;
+    if (temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
+      return true;
     }
     // Tapa inferior
     temp =  (-oc.y) / rayDir.y;
     x = raig.pointAtParameter(temp).x;
     z = raig.pointAtParameter(temp).z;
 
-    if (temp < closest && temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
-      hasHit = true;
+    if (temp < raig.getTmax() && temp > raig.getTmin() && pow(x - center.x, 2) + pow(z - center.z, 2) <= pow(radius, 2)) {
+      return true;
     }
 
-    return hasHit;
+    // Si hemos llegado aquí es porque no hay intersección
+    return false;
 }
 
 void Cylinder::aplicaTG(shared_ptr<TG> t) {

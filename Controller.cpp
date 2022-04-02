@@ -27,7 +27,8 @@ Controller::Controller(Serializable::SaveFormat format, QString dataFileName, QS
         scene->setDownBackground(visualSetup->getDownBackground());
 
         // TODO: Fase 2: Afegim les llums de l'escena
-
+        scene->setGlobalLight(visualSetup->getGlobalLight());
+        scene->setLights(visualSetup->getLights());
 
         // ETAPA 3: Inicialitzacio del Rendering
         // usa un Factory Method per a construir el tipus de render

@@ -91,7 +91,7 @@ void SceneFactoryData::read(const QJsonObject &json)
             o = ObjectFactory::getInstance().createObject(ObjectFactory::getInstance().getObjectType(objStr));
             o->read(jbase);
             // TO DO: Fase 1: Afegeix l'objecte base a l'escena
-            // scene->baseObj = o;
+            scene->baseObj = o;
         }
     }
     mapping = make_shared<InfoMapping>();

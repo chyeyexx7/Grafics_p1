@@ -33,7 +33,11 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
     // Cada vegada que s'intersecta un objecte s'ha d'actualitzar el HitInfo del raig.
 
     bool hitted = false;
-    // Hay que optimizar esta función en el futuro!!
+
+    if (baseObj != nullptr) {
+        if(baseObj->hasHit)
+    }
+    // Miramos si hay intersección con algún objeto
     for (int i = 0; i < this->objects.size(); i++){
         if (this->objects.at(i)->closestHit(raig, info)){
             raig.setTmax(info.t);
@@ -51,7 +55,12 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
 **
 */
 bool Scene::hasHit (const Ray& raig) const {
-
+    // Iteramos sobre todos los objetos para ver si hay intersección
+    for (int i = 0; i < this->objects.size(); i++) {
+        if (this->objects.at(i)->hasHit(raig)) {
+           return true;
+        }
+    }
     return false;
 }
 
@@ -82,8 +91,9 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth ) {
     HitInfo info;
     if (this->closestHit(ray, info)) {
         //color = info.mat_ptr->Kd;             //FASE 0 material esfera
-        color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
+        //color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
         //color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
+        color = this->shading(info, lookFrom);
     }
     // If we didn't hit any object, set color of the background
     else {
@@ -126,17 +136,51 @@ void Scene::setTopBackground(vec3 color) {
 ** FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
 */
 vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
+    vec3 ca = vec3(0, 0, 0);
+    vec3 cd = vec3(0, 0, 0);
+    vec3 cs = vec3(0, 0, 0);
+    vec3 I = vec3(0, 0, 0);
+    vec3 L, V, H;
 
-    return vec3(1.0, 0.0, 0.0);
+    float attenuation, shadowFactor;
+
+    I += globalLight * info.mat_ptr->Ka;
+    for (int i = 0; i < lights.size(); i++) {
+        //attenuation = 0.5 + 0.01*pow(lights[i]->distanceToLight(info.p), 2);
+        attenuation = lights[i]->attenuation(info.p);
+        // Light's position
+        L = lights[i]->vectorL(info.p);
+        V = normalize(lookFrom-info.p);
+        // H = (L + V ) / |(L + V)|
+        H = normalize(L + V);
+        shadowFactor = this->computeShadow(lights[i], info.p);
+        // Componente ambiente
+        ca = info.mat_ptr->Ka * lights[i]->getIa();
+        // Componente difusa
+        cd = info.mat_ptr->Kd * lights[i]->getId() * fmax(dot(L, info.normal), 0.0f);
+        //Componente especular
+        cs = info.mat_ptr->Ks * lights[i]->getIs() * pow(fmaxf(dot(info.normal, H), 0.0f), info.mat_ptr->shininess);
+
+        I += shadowFactor*attenuation*(ca + cd) + cs;
+    }
+    return I;
 }
 
 /*
 ** TODO: Funcio RayColor es la funcio recursiva del RayTracing.
 ** FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
 */
-//float Scene::computeShadow(shared_ptr<Light> light, vec3 point) {
+float Scene::computeShadow(shared_ptr<Light> light, vec3 point) {
+    float shadowFactor = 1.0f;
+    Ray shadowRay(point, light->vectorL(point), 0.01f, light->distanceToLight(point));
 
-//}
+    // Comprobamos si la luz llega a esta posición
+    if (this->hasHit(shadowRay)) {
+        shadowFactor = 0.7f;
+    }
+
+    return shadowFactor;
+}
 
 /*
  * TODO: FASE 2
@@ -144,6 +188,14 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
  * void setLights(std::vector<shared_ptr<Light>> lights) {}
  * void setGlobalLight(vec3 light);
  */
+
+void Scene::setLights(std::vector<shared_ptr<Light>> lights) {
+    this->lights = lights;
+}
+
+void Scene::setGlobalLight(vec3 light) {
+    this->globalLight = light;
+}
 
 
 
