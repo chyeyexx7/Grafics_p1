@@ -3,8 +3,8 @@
 ## Equip:
 **A02**
 * [Chang Ye](https://github.com/chyeyexx7)
-* [Sergi Lopez](https://github.com/buildcrash)
-* [Noel Vázquez](https://github.com/sergiLopez)
+* [Sergi Lopez](https://github.com/sergiLopez)
+* [Noel Vázquez](https://github.com/buildcrash)
 * [Alejandro Couciero](https://github.com/Couci27)
 
 ### Features (marqueu les que heu fet i qui les ha fet)
