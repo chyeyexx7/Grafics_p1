@@ -32,6 +32,7 @@ SOURCES += \
         Modelling/Hitable.cpp \
         Modelling/Materials/MaterialTexture.cpp \
         Modelling/Materials/Metal.cpp \
+        Modelling/Materials/Transparent.cpp \
         Modelling/Objects/Cylinder.cpp \
         Modelling/Objects/Mesh.cpp \
         Modelling/Objects/Triangle.cpp \
@@ -94,6 +95,7 @@ HEADERS += \
     Modelling/Materials/MaterialTexture.h \
     Modelling/Materials/Metal.h \
     Modelling/Materials/Texture.h \
+    Modelling/Materials/Transparent.h \
     Modelling/Objects/Cara.h \
     Modelling/Objects/Cylinder.h \
     Modelling/Objects/Mesh.h \

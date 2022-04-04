@@ -90,7 +90,7 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth) {
         //color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
         //color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
         color = this->shading(info, lookFrom);
-        if (depth < MAXDEPTH) {
+        if (depth < 1) {
             Ray ref;
             info.mat_ptr->getOneScatteredRay(ray, info, ref);
             color += info.mat_ptr->getAttenuation(ray, info) * RayColor(lookFrom, ref, depth+1);
@@ -137,12 +137,10 @@ void Scene::setTopBackground(vec3 color) {
 ** FASE 0: Càlcul de la il.luminació segons la distànica del punt a l'observador
 ** FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
 */
+#include <iostream>
 vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
-    vec3 ca = vec3(0, 0, 0);
-    vec3 cd = vec3(0, 0, 0);
-    vec3 cs = vec3(0, 0, 0);
-    vec3 I = vec3(0, 0, 0);
-    vec3 L, V, H;
+    vec3 ca, cd, cs, L, V, H;
+    vec3 I = vec3(0.0f);
 
     float attenuation, shadowFactor;
 
@@ -159,6 +157,7 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
         V = normalize(lookFrom-info.p);
         // H = (L + V ) / |(L + V)|
         H = normalize(L + V);
+
         shadowFactor = this->computeShadow(lights[i], info.p);
         // Componente ambiente
         ca = info.mat_ptr->Ka * lights[i]->getIa();
@@ -179,9 +178,11 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
 float Scene::computeShadow(shared_ptr<Light> light, vec3 point) {
     float shadowFactor = 1.0f;
     Ray shadowRay(point, light->vectorL(point), 0.01f, light->distanceToLight(point));
-
+    HitInfo info;
     // Comprobamos si la luz llega a esta posición
-    if (this->hasHit(shadowRay)) {
+    if (this->closestHit(shadowRay, info)) {
+        // ignoramos la sombra si es un objeto transparente
+        if(dynamic_cast<Transparent*>(info.mat_ptr) != nullptr) return shadowFactor;
         shadowFactor = 0.0f;
     }
 

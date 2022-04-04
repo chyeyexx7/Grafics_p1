@@ -24,6 +24,8 @@ public:
     vec3 Ka;
     vec3 Kd;
     vec3 Ks;
+    vec3 Kt;
+    float nut;
     float shininess;
     float opacity; // opacity es la fraccio de 0..1 (0 és totalment transparent, 1 és totalment opac)
 

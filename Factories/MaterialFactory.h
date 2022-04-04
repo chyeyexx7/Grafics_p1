@@ -3,6 +3,7 @@
 #include "Modelling/Materials/Material.h"
 #include "Modelling/Materials/Lambertian.h"
 #include "Modelling/Materials/Metal.h"
+#include "Modelling/Materials/Transparent.h"
 
 
 class MaterialFactory

@@ -60,6 +60,14 @@ void Material::read (const QJsonObject &json)
         Ks[1] = auxVec[1].toDouble();
         Ks[2] = auxVec[2].toDouble();
     }
+    if (json.contains("kt") && json["kt"].isArray()) {
+        QJsonArray auxVec = json["kt"].toArray();
+        Kt[0] = auxVec[0].toDouble();
+        Kt[1] = auxVec[1].toDouble();
+        Kt[2] = auxVec[2].toDouble();
+    }
+    if (json.contains("nut") && json["nut"].isDouble())
+        nut = json["nut"].toDouble();
     if (json.contains("shininess") && json["shininess"].isDouble())
         shininess = json["shininess"].toDouble();
     if (json.contains("opacity") && json["opacity"].isDouble())
@@ -81,9 +89,13 @@ void Material::write(QJsonObject &json) const
 
     QJsonArray auxArray3;
     auxArray3.append(Ks[0]);auxArray3.append(Ks[1]);auxArray3.append(Ks[2]);
+    QJsonArray auxArray4;
+    auxArray4.append(Kt[0]);auxArray4.append(Kt[1]);auxArray4.append(Kt[2]);
+    json["ks"] = auxArray3;
     json["ks"] = auxArray3;
     json["opacity"] = opacity;
     json["shininess"] = shininess;
+    json["nut"] = nut;
 }
 
 //! [1]

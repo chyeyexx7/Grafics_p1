@@ -24,14 +24,14 @@ bool Metal::getOneScatteredRay(const Ray& r_in, const HitInfo& rec, Ray& r_out) 
     // Dirección rayo reflectado
     vec3 target = reflect(r_in.getDirection(), rec.normal);
     // 0.01f*target para reducir acne
-    r_out = Ray(rec.p + FLT_EPSILON*100 * target, target);
+    r_out = Ray(rec.p + 0.01f * target, target);
     return true;
 }
 bool Metal::getMultipleScatteredRays(const Ray& r_in, const HitInfo& rec,  std::vector<Ray>& r_out) const  {
     for (int i = 0; i < MULTIPLE_SCATTER_SAMPLES; i++) {
         vec3 target = reflect(r_in.getDirection(), rec.normal);
         // 0.01f*target para reducir acne
-        r_out.push_back(Ray(rec.p + FLT_EPSILON*100 * target, target));
+        r_out.push_back(Ray(rec.p + 0.01f * target, target));
     }
     return true;
 }

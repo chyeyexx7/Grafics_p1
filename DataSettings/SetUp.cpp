@@ -59,7 +59,6 @@ bool SetUp::save(SetUp::SaveFormat saveFormat, QString nameFile) const
 }
 
 //! [0]
-#include <iostream>
 void SetUp::read(const QJsonObject &json)
 {
     if (json.contains("renderType") && json["renderType"].isString())
