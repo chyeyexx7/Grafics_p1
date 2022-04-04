@@ -98,7 +98,7 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth) {
     }
     // If we didn't hit any object, set color of the background
     else {
-        float height = 0.5*(ray2.y +1);
+        float height = 0.5*(ray2.y + 1);
         color = this->colorDown*(1-height) + this->colorTop*height;
     }
 
@@ -149,8 +149,8 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
      */
     I += globalLight * info.mat_ptr->Ka;
     for (int i = 0; i < lights.size(); i++) {
-        attenuation = 0.5 + 0.01*pow(lights[i]->distanceToLight(info.p), 2);
-        //attenuation = lights[i]->attenuation(info.p);
+        //attenuation = 0.5 + 0.01*pow(lights[i]->distanceToLight(info.p), 2);
+        attenuation = lights[i]->attenuation(info.p);
         // Posición de luz
         L = lights[i]->vectorL(info.p);
         // Vector visión
@@ -166,7 +166,7 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
         //Componente especular
         cs = info.mat_ptr->Ks * lights[i]->getIs() * pow(fmaxf(dot(info.normal, H), 0.0f), info.mat_ptr->shininess);
 
-        I += shadowFactor / attenuation * (cd + cs) + ca;
+        I += shadowFactor * attenuation * (cd + cs) + ca;
     }
     return I;
 }

@@ -35,5 +35,8 @@
         <file>resources/cornell_box_geometry_phong.json</file>
         <file>resources/cornell_box_geometry_simple.json</file>
         <file>resources/cornell_box_geometry_simple_phong.json</file>
+        <file>resources/luigi.obj</file>
+        <file>resources/mario.obj</file>
+        <file>resources/teapot2.obj</file>
     </qresource>
 </RCC>

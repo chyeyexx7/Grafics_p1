@@ -38,7 +38,6 @@ public:
    virtual ~Mesh();
 private:
 
-
     QString nom;
     vector<Cara> cares; // cares de l'objecte
     vector<vec4> vertexs; // vertexs de l'objecte sense repetits

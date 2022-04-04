@@ -22,25 +22,29 @@ Mesh::~Mesh() {
 
 }
 
+#include <iostream>
 void Mesh::construeix_triangles() {
     // TO DO Fase 1: A implementar
+    shared_ptr<Object> o;
     for (Cara c: cares) {
         vector<int> temp = c.idxVertices;
         vec3 p1(vertexs[temp[0]]);
         vec3 p2(vertexs[temp[1]]);
         vec3 p3(vertexs[temp[2]]);
-        //Triangle *triangle = new Triangle(p1, p2, p3, data);
-        triangles.push_back(Triangle(p1, p2, p3, data));
+        Triangle *triangle = new Triangle(p1, p2, p3, -1.0f);
+        triangle->setMaterial(this->material);
+        triangles.push_back(*triangle);
     }
 }
 
-
+#include <iostream>
 bool Mesh::closestHit(Ray &raig, HitInfo& info) const {
 
     // TODO Fase 1: A implementar
     bool hasHit = false;
     float closest = std::numeric_limits<float>::max();
     HitInfo temp;
+
     for(Triangle t: triangles) {
         if(t.closestHit(raig, temp) && temp.t < closest) {
             closest = temp.t;
@@ -48,7 +52,6 @@ bool Mesh::closestHit(Ray &raig, HitInfo& info) const {
             hasHit = true;
         }
     }
-
     return hasHit;
 }
 
@@ -120,6 +123,7 @@ void Mesh::load (QString fileName) {
                     }
                 }
             }
+            construeix_triangles();
             file.close();
         } else {
             qWarning("Boundary object file can not be opened.");

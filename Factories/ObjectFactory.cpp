@@ -1,5 +1,6 @@
 #include "ObjectFactory.h"
 
+#include <iostream>
 shared_ptr<Object> ObjectFactory::createObject(OBJECT_TYPES t)
 {
     shared_ptr<Object> o;
@@ -25,7 +26,6 @@ shared_ptr<Object> ObjectFactory::createObject(OBJECT_TYPES t)
 
     return o;
 }
-
 
 
 

@@ -14,12 +14,10 @@ Triangle::Triangle(float data) : Object(data) {
     this->normal = calculateNormal();
 }
 
-
-#include <iostream>
 bool Triangle::closestHit(Ray &raig, HitInfo& info) const {
     vec3 direction = normalize(raig.getDirection());
     float dirXnorm = dot(direction, this->normal);
-    if(dirXnorm != 0){
+    if(dirXnorm != 0) {
         float t = dot(p1 - raig.getOrigin(), this->normal) / dirXnorm;
 
         if(t < raig.getTmax() && raig.getTmin() < t){
@@ -106,15 +104,15 @@ void Triangle::write(QJsonObject &json) const {
 
     QJsonArray auxArray;
     auxArray.append(p1[0]);auxArray.append(p1[1]);auxArray.append(p1[2]);
-    json["v1"] = auxArray;
+    json["p1"] = auxArray;
 
     QJsonArray auxArray2;
     auxArray2.append(p2[0]);auxArray2.append(p2[1]);auxArray2.append(p2[2]);
-    json["v2"] = auxArray2;
+    json["p2"] = auxArray2;
 
     QJsonArray auxArray3;
     auxArray3.append(p3[0]);auxArray3.append(p3[1]);auxArray3.append(p3[2]);
-    json["v3"] = auxArray3;
+    json["p3"] = auxArray3;
 }
 //! [1]
 
