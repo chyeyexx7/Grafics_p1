@@ -90,7 +90,7 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth) {
         //color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
         //color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
         color = this->shading(info, lookFrom);
-        if (depth < 1) {
+        if (depth < MAXDEPTH) {
             Ray ref;
             info.mat_ptr->getOneScatteredRay(ray, info, ref);
             color += info.mat_ptr->getAttenuation(ray, info) * RayColor(lookFrom, ref, depth+1);
