@@ -10,6 +10,7 @@
 #include "Modelling/Materials/Material.h"
 #include "Modelling/Lights/Light.h"
 
+
 class Scene: public Hitable
 {
 public:
@@ -76,7 +77,7 @@ public:
     vec3 pmin, pmax;
 
     // Vector d'objectes continguts a l'escena
-    shared_ptr<FittedPlane> baseObj;
+    //shared_ptr<FittedPlane> baseObj;
     std::vector<shared_ptr<Object>> objects;
     // FASE 2: Afegir llums a l'escena i la il.luminació global
     // Implementar els mètodes següents

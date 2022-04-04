@@ -2,6 +2,7 @@
 
 #include "Modelling/Materials/Material.h"
 #include "Modelling/Materials/Lambertian.h"
+#include "Modelling/Materials/Metal.h"
 
 
 class MaterialFactory

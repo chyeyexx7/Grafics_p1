@@ -2,14 +2,14 @@
 "renderType": "IMAGE",
 "output": "resultat.ppm",
 "camera": {
-    "lookFrom": [-2.0, 2.0, 3.0],
+    "lookFrom": [-2.0, 2.0, 6.0],
     "lookAt": [0, 0, 0],
     "vup": [0, 1, 0],
     "vfov": 45.00,
     "aspectRatio": 2.0,
     "pixelsX": 600
 },
-"globalLight": [ 0.1, 0.1, 0.1],
+"globalLight": [ 0.7, 0.7, 0.7],
 "lights" : [
 {
  "type": "pointLight",

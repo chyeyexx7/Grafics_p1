@@ -59,6 +59,7 @@ bool SetUp::save(SetUp::SaveFormat saveFormat, QString nameFile) const
 }
 
 //! [0]
+#include <iostream>
 void SetUp::read(const QJsonObject &json)
 {
     if (json.contains("renderType") && json["renderType"].isString())
@@ -104,8 +105,10 @@ void SetUp::read(const QJsonObject &json)
         downBackground[1] = globalVec[1].toDouble();
         downBackground[2] = globalVec[2].toDouble();
     }
-    if (json.contains("MAXDEPTH") && json["MAXDEPTH"].isDouble())
+    if (json.contains("MAXDEPTH") && json["MAXDEPTH"].isDouble()) {
         MAXDEPTH = json["MAXDEPTH"].toInt();
+        cout << MAXDEPTH << " setUP\n";
+    }
 }
 //! [0]
 

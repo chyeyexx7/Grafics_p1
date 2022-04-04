@@ -31,6 +31,7 @@ SOURCES += \
         Modelling/Animation.cpp \
         Modelling/Hitable.cpp \
         Modelling/Materials/MaterialTexture.cpp \
+        Modelling/Materials/Metal.cpp \
         Modelling/Objects/Cylinder.cpp \
         Modelling/Objects/Mesh.cpp \
         Modelling/Objects/Triangle.cpp \
@@ -91,6 +92,7 @@ HEADERS += \
     Modelling/Materials/Lambertian.h \
     Modelling/Materials/Material.h \
     Modelling/Materials/MaterialTexture.h \
+    Modelling/Materials/Metal.h \
     Modelling/Materials/Texture.h \
     Modelling/Objects/Cara.h \
     Modelling/Objects/Cylinder.h \

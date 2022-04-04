@@ -4,6 +4,7 @@
 
 #include "Object.h"
 #include "Modelling/Animation.h"
+#include "Modelling/Objects/Plane.h"
 #include "Modelling/TG/TranslateTG.h"
 
 class Triangle: public Object
@@ -11,7 +12,7 @@ class Triangle: public Object
 public:
     // Constructors
     Triangle() {};
-    Triangle(vec3 v1, vec3 v2, vec3 v3, float data);
+    Triangle(vec3 p1, vec3 p2, vec3 p3, float data);
     Triangle(float data);
 
     // Destructor
@@ -32,7 +33,7 @@ public:
 
 private:
     // Tres vértices del triangulo
-    vec3 v1, v2, v3;
+    vec3 p1, p2, p3;
     // Normal del triangle
     vec3 normal;
 };
