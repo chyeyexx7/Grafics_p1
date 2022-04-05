@@ -3,29 +3,29 @@
 ## Equip:
 **A02**
 * [Chang Ye](https://github.com/chyeyexx7)
-* [Sergi Lopez](https://github.com/buildcrash)
-* [Noel Vázquez](https://github.com/sergiLopez)
-* [Alejandro couciero](https://github.com/Couci27)
+* [Sergi Lopez](https://github.com/sergiLopez)
+* [Noel Vázquez](https://github.com/buildcrash)
+* [Alejandro Couciero](https://github.com/Couci27)
 
 ### Features (marqueu les que heu fet i qui les ha fet)
 - Fase 1
-    - [ ] Background amb degradat
-      - Estudiants que hi han participat
+    - [x] Background amb degradat
+      - Noel Vázquez
    
     - Creació de nous objectes i interseccions (VIRTUALWORLD) 
-        - [ ] 3.1.a. Mapping de mons virtuals
-          - Estudiants que hi han participat
-        - [ ] 3.1.b. Hit Triangle
-          - Estudiants que hi han participat
-        - [ ] 3.1.c. Hit Boundary Object
-          - Estudiants que hi han participat
-        - [ ] 3.1.d. Hit Cilindre
-          - Estudiants que hi han participat
+        - [x] 3.1.a. Mapping de mons virtuals
+          - Noel Vázquez
+        - [x] 3.1.b. Hit Triangle
+          - Noel Vázquez
+        - [x] 3.1.c. Hit Boundary Object
+          - Chang Ye
+        - [x] 3.1.d. Hit Cilindre
+          - Chang Ye
     - Creació de REAL DATA
-        - [ ] 3.2.a. Transformacions Translació i Escalat amb gizmos esferes
-          - Estudiants que hi han participat
-        - [ ] 3.2.b. Pla de terra
-          - Estudiants que hi han participat
+        - [x] 3.2.a. Transformacions Translació i Escalat amb gizmos esferes
+          - Noel Vázquez
+        - [x] 3.2.b. Pla de terra
+          - Noel Vázquez
         - [ ] 3.2.c. Gizmo de Triangle
           - Estudiants que hi han participat
         - [ ] 3.2.d. Gizmo de Cilindre
@@ -35,28 +35,28 @@
        
 
 - Fase 2
-    - [ ] Antialiasing
-      - Estudiants que hi han participat
-    - [ ] Gamma Correction
-      - Estudiants que hi han participat
-    - [ ] Blinn-Phong
-      - Estudiants que hi han participat
-    - [ ] Ombres amb objectes opacs
-      - Estudiants que hi han participat
-    - [ ] Reflexions
-      - Estudiants que hi han participat
-    - [ ] Transparències
-      - Estudiants que hi han participat
+    - [x] Antialiasing
+      - Chang Ye
+    - [x] Gamma Correction
+      - Chang Ye
+    - [x] Blinn-Phong
+      - Chang Ye
+    - [x] Ombres amb objectes opacs
+      - Chang Ye
+    - [x] Reflexions
+      - Chang Ye
+    - [x] Transparències
+      - Chang Ye
     - [ ] Visualització amb dades reals
       - Estudiants que hi han participat
     
     
 - Fase 3
-  - [x] Texture mapping en el pla
+  - [ ] Texture mapping en el pla
     - Estudiants que hi han participat
-  - [x] MaterialTextura
+  - [ ] MaterialTextura
     - Estudiants que hi han participat
-  - [x] Nova escena de dades
+  - [ ] Nova escena de dades
     - Estudiants que hi han participat
    
 - Parts opcionals
