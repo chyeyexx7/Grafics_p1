@@ -5,7 +5,7 @@
 {
   "name": "Esfera petita",
   "type": "sphere",
-  "center": [0.0, 0.0, 0.0],
+  "center": [0.0, 0.0, -1.0],
   "radius": 0.5,
   "material": {
     "type": "lambertian",
@@ -35,7 +35,7 @@
 {
   "name": "Esfera metalica",
   "type": "sphere",
-  "center": [-5.0, 1.0, 0.0],
+  "center": [-3.0, 1.0, 0.0],
   "radius": 1.0,
   "material": {
     "type": "metal",
@@ -50,7 +50,7 @@
 {
   "name": "Esfera transparente",
   "type": "sphere",
-  "center": [-2.0, 1.0, 0.0],
+  "center": [0.0, 1.0, 0.0],
   "radius": 1.0,
   "material": {
     "type": "transparent",

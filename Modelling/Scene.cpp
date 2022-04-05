@@ -142,7 +142,7 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
     vec3 ca, cd, cs, L, V, H;
     vec3 I = vec3(0.0f);
 
-    float attenuation, shadowFactor;
+    float attenuation, shadowFactor = 1.0f;
 
     /* Blinn-Phong
      * Itotal = Ia_Global * Ka + sum( atenuación * factorSombra * (difusa + especular) + ambiente
@@ -179,7 +179,7 @@ float Scene::computeShadow(shared_ptr<Light> light, vec3 point) {
     float shadowFactor = 1.0f;
     Ray shadowRay(point, light->vectorL(point), 0.01f, light->distanceToLight(point));
     HitInfo info;
-    // Comprobamos si la luz llega a esta posición
+    // Comprobamos si hay algún obstáculo
     if (this->closestHit(shadowRay, info)) {
         // ignoramos la sombra si es un objeto transparente
         if(dynamic_cast<Transparent*>(info.mat_ptr) != nullptr) return shadowFactor;

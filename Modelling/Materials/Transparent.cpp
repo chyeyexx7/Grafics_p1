@@ -54,3 +54,15 @@ bool Transparent::getMultipleScatteredRays(const Ray& r_in, const HitInfo& rec, 
     return true;
 }
 
+void Transparent::read(const QJsonObject& json) {
+    Material::read(json);
+    if (json.contains("kt") && json["kt"].isArray()) {
+        QJsonArray auxVec = json["kt"].toArray();
+        Kt[0] = auxVec[0].toDouble();
+        Kt[1] = auxVec[1].toDouble();
+        Kt[2] = auxVec[2].toDouble();
+    }
+    if (json.contains("nut") && json["nut"].isDouble())
+        nut = json["nut"].toDouble();
+}
+
