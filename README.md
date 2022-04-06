@@ -65,7 +65,8 @@
    
   - [ ] Diferents tipus de llums 
     
-  - [ ] Multiple-scattering 
+  - [x] Multiple-scattering 
+    - Chang Ye
    
   - [ ] Escena CSG 
   
