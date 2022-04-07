@@ -26,9 +26,9 @@
           - Noel Vázquez
         - [x] 3.2.b. Pla de terra
           - Noel Vázquez
-        - [ ] 3.2.c. Gizmo de Triangle
+        - [x] 3.2.c. Gizmo de Triangle
           - Chang Ye
-        - [ ] 3.2.d. Gizmo de Cilindre
+        - [x] 3.2.d. Gizmo de Cilindre
           - Chang Ye
         - [ ] Noves dades
           - Estudiants que hi han participat
@@ -47,14 +47,14 @@
       - Chang Ye
     - [x] Transparències
       - Chang Ye
-    - [ ] Visualització amb dades reals
+    - [x] Visualització amb dades reals
       - Chang Ye
     
     
 - Fase 3
-  - [ ] Texture mapping en el pla
+  - [x] Texture mapping en el pla
     - Chang Ye
-  - [ ] MaterialTextura
+  - [x] MaterialTextura
     - Chang Ye
   - [ ] Nova escena de dades
     - Estudiants que hi han participat
