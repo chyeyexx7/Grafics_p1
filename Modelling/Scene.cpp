@@ -92,15 +92,15 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth) {
     // Agregamos el color si hemos intersectado con un objeto
     if (this->closestHit(ray, info)) {
         //color = info.mat_ptr->Kd;             //FASE 0 material esfera
-        color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
+        //color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
         //color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
-        /*color = this->shading(info, lookFrom);
+        color = this->shading(info, lookFrom);
         if (depth < MAXDEPTH) {
             Ray ref;
             if (info.mat_ptr->getOneScatteredRay(ray, info, ref)) {
                 color += info.mat_ptr->getAttenuation(ray, info) * RayColor(lookFrom, ref, depth+1);
             }
-        }*/
+        }
     }
     // Si no hemos intersectado con ningún objeto, le ponemos el color del background
     else {
