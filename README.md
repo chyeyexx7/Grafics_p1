@@ -30,8 +30,8 @@
           - Chang Ye
         - [x] 3.2.d. Gizmo de Cilindre
           - Chang Ye
-        - [ ] Noves dades
-          - Estudiants que hi han participat
+        - [x] Noves dades
+          - Chang Ye
        
 
 - Fase 2
@@ -56,8 +56,8 @@
     - Chang Ye
   - [x] MaterialTextura
     - Chang Ye
-  - [ ] Nova escena de dades
-    - Estudiants que hi han participat
+  - [x] Nova escena de dades
+    - Chang Ye
    
 - Parts opcionals
   - [ ] Nous objectes paramètrics 
