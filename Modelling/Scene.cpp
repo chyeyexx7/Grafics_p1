@@ -105,7 +105,7 @@ vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth) {
     // Si no hemos intersectado con ningún objeto, le ponemos el color del background
     else {
         // Comprobamos si en las recursiones tenemos en cuenta el background o la luz ambiental
-        if (depth == 0 || backgroundInRecurvise || true) {
+        if (depth == 0 || backgroundInRecurvise) {
             float height = 0.5*(normalize(ray.getDirection()).y + 1);
             color = this->colorDown * (1-height) + this->colorTop * height;
         }else {
