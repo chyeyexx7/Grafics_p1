@@ -6,6 +6,7 @@
 * [Sergi Lopez](https://github.com/sergiLopez)
 * [Noel Vázquez](https://github.com/buildcrash)
 * [Alejandro Couciero](https://github.com/Couci27)
+* ![alt text](https://github.com/GiVD2021/p1-visraytrace-a02/blob/main/Images/fase1Cylinder.ppm?raw=true)
 
 ### Features (marqueu les que heu fet i qui les ha fet)
 - Fase 1
