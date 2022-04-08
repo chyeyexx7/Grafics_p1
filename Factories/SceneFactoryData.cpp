@@ -1,3 +1,4 @@
+
 #include "SceneFactoryData.h"
 
 SceneFactoryData::SceneFactoryData(shared_ptr<InfoMapping> mr):SceneFactory()
@@ -7,7 +8,7 @@ SceneFactoryData::SceneFactoryData(shared_ptr<InfoMapping> mr):SceneFactory()
 
 
 shared_ptr<Scene> SceneFactoryData::createScene(Serializable::SaveFormat saveFormat, QString nameFile) {
-    scene= make_shared<Scene>();
+    scene = make_shared<Scene>();
     load(saveFormat, nameFile);
     print(0);
     return buildVirtualScene();
@@ -36,9 +37,10 @@ bool SceneFactoryData::load(SceneFactory::SaveFormat saveFormat, QString nameFil
 
     QByteArray saveData = loadFile.readAll();
     QJsonParseError error;
-    QJsonDocument loadDoc(/*saveFormat == SaveFormat::Json
-        ?*/ QJsonDocument::fromJson(saveData, &error)
-        /*: QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject())*/);
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData, &error));
+    /*QJsonDocument loadDoc(saveFormat == SaveFormat::Json
+        ? QJsonDocument::fromJson(saveData, &error)
+        : QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject()));*/
 
 
     if (loadDoc.isNull()) {
@@ -68,9 +70,10 @@ bool SceneFactoryData::save(Serializable::SaveFormat saveFormat, QString nameFil
 
     QJsonObject setUpObject;
     write(setUpObject);
-    saveFile.write(/*saveFormat == Json
-        ?*/ QJsonDocument(setUpObject).toJson()
-        /*: QCborValue::fromJsonValue(setUpObject).toCbor()*/);
+    saveFile.write(QJsonDocument(setUpObject).toJson());
+    /*saveFile.write(saveFormat == Json
+        ? QJsonDocument(setUpObject).toJson()
+        : QCborValue::fromJsonValue(setUpObject).toCbor());*/
 
     return true;
 }
@@ -78,6 +81,7 @@ bool SceneFactoryData::save(Serializable::SaveFormat saveFormat, QString nameFil
 //! [0]
 void SceneFactoryData::read(const QJsonObject &json)
 {
+
     if (json.contains("scene") && json["scene"].isString())
         scene->name = json["scene"].toString();
     if (json.contains("typeScene") && json["typeScene"].isString())
@@ -91,11 +95,12 @@ void SceneFactoryData::read(const QJsonObject &json)
             o = ObjectFactory::getInstance().createObject(ObjectFactory::getInstance().getObjectType(objStr));
             o->read(jbase);
             // TO DO: Fase 1: Afegeix l'objecte base a l'escena
-            // scene->baseObj = o;
+            scene->baseObj = dynamic_pointer_cast<FittedPlane>(o);
         }
     }
     mapping = make_shared<InfoMapping>();
     mapping->read(json);
+
 
 }
 //! [0]
@@ -107,13 +112,13 @@ void SceneFactoryData:: write(QJsonObject &json) const
 
    QJsonObject jbase;
    // TO DO Fase 1: Cal escriure l'objecte base a fitxer: Descomenta les següents línies
-   // scene->baseObj->write(jbase);
-   // auto value = ObjectFactory::getInstance().getIndexType(scene->baseObj);
-   // jbase["type"]  = ObjectFactory::getInstance().getNameType(value);
+   scene->baseObj->write(jbase);
+   auto value = ObjectFactory::getInstance().getIndexType(scene->baseObj);
+   jbase["type"]  = ObjectFactory::getInstance().getNameType(value);
 
    json["base"] = jbase;
 
-    mapping->write(json);
+   mapping->write(json);
 }
 
 void SceneFactoryData::print(int indentation) const
@@ -122,13 +127,26 @@ void SceneFactoryData::print(int indentation) const
     QTextStream(stdout) << indent << "scene:\t" << scene->name << "\n";
     QTextStream(stdout) << indent << "typeScene:\t" << SceneFactory::getNameType(currentType) << "\n";
     QTextStream(stdout) << indent << "base:\t\n";
-    // scene->baseObj->print(indentation +2);
+    scene->baseObj->print(indentation +2);
     mapping->print(indentation+2);
 }
 
 shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
     // TO DO: A partir de les dades carregades, cal contruir l'escena virtual amb tot colocat al seu lloc
     // i a la seva mida
+
+    float maxX = mapping->Vxmax;
+    float maxY = mapping->Vzmax;
+    float maxS = 0.5*mapping->Vymax;
+    float minX = mapping->Vxmin;
+    float minY = mapping->Vzmin;
+    float minS = 0.1f;
+
+    float baseX = mapping->Rxmin;
+    float baseY = mapping->Rzmin;
+    float rangeX = mapping->Rxmax - baseX;
+    float rangeY = mapping->Rzmax - baseY;
+
     for (unsigned int i=0; i<mapping->props.size(); i++) {
         // A props[i].first es te la informació de la propietat per fer el mapping de cada valor
          shared_ptr<PropertyInfo> propinfo = mapping->props[i].first;
@@ -147,6 +165,23 @@ shared_ptr<Scene> SceneFactoryData::buildVirtualScene() {
              o->setMaterial(mapeigMaterial(propinfo, propinfo->colorMapType,
                                            MaterialFactory::getInstance().getIndexType(propinfo->material),
                                            mapping->props[i].second[j][2]));
+             //vec3 mover = vec3(0,0,0);
+             //mapping->props[i].second[j]
+             //o->aplicaTG(make_shared<TranslateTG>());
+
+
+             //TRANSLATE
+             float rX = ((mapping->props[i].second[j][0] - baseX) / rangeX) * (maxX - minX) + minX;
+             float rY = ((mapping->props[i].second[j][1] - baseY) / rangeY) * (maxY - minY) + minY;
+
+             vec3 trans(rX, 0, -rY);
+
+             o->aplicaTG(make_shared<TranslateTG>(trans));
+
+             //SCALE
+             float realValue = mapping->props[i].second[j][2];
+             float value = ((realValue - propinfo->minValue) / (propinfo->maxValue - propinfo->minValue)*(maxS-minS)) + minS;
+             o->aplicaTG(make_shared<ScaleTG>(value));
 
              // Afegir objecte a l'escena
              scene->objects.push_back(o);

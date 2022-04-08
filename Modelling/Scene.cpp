@@ -31,18 +31,23 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
     // Una possible solucio es cridar el mètode "hit" per a tots els objectes i quedar-se amb la interseccio
     // mes propera a l'observador, en el cas que n'hi hagi més d'una.
     // Cada vegada que s'intersecta un objecte s'ha d'actualitzar el HitInfo del raig.
-
     bool hitted = false;
-    for (int i = 0; i < this->objects.size(); i++){
-        if (this->objects.at(i)->closestHit(raig, info)){
+
+    // Si tenemos un plano y hay una intersección
+    if (baseObj != nullptr && baseObj->closestHit(raig, info)) {
+        raig.setTmax(info.t);
+        hitted = true;
+    }
+
+    // Miramos si hay intersección con alguna figura
+    for(int i = 0; i < objects.size(); i++) {
+        if(objects[i]->closestHit(raig, info)) {
             raig.setTmax(info.t);
             hitted = true;
         }
     }
-
     return hitted;
 }
-
 /*
 ** TODO: FASE 2:
 ** Metode que testeja la interseccio contra tots els objectes de l'escena i retorna
@@ -51,6 +56,16 @@ bool Scene::closestHit(Ray &raig, HitInfo& info) const {
 */
 bool Scene::hasHit (const Ray& raig) const {
 
+    // Si tenemos un plano y hay una intersección
+    if (baseObj != nullptr && baseObj->hasHit(raig)) {
+        return true;
+    }
+    // Iteramos sobre todos los objetos para ver si hay intersección
+    for (int i = 0; i < this->objects.size(); i++) {
+        if (this->objects.at(i)->hasHit(raig)) {
+           return true;
+        }
+    }
     return false;
 }
 
@@ -68,25 +83,34 @@ bool Scene::hasHit (const Ray& raig) const {
 ** TODO: Fase 2 per a tractar reflexions i transparències
 **
 */
-vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth ) {
+
+vec3 Scene::RayColor (vec3 lookFrom, Ray &ray, int depth) {
     vec3 color;
-    vec3 ray2;
-
-    ray2 = normalize(ray.getDirection());
-    // TODO: A canviar el càlcul del color en les diferents fases (via el mètode de shading)
-    // Convert [-1,1] to [0,1]
-    float height = ((ray2.y - (-1.0)) * (1 - 0)) / (1 - (-1)) + 0;
-
-    // Set color if we hit an object
     HitInfo info;
+    // TODO: A canviar el càlcul del color en les diferents fases (via el mètode de shading)
+
+    // Agregamos el color si hemos intersectado con un objeto
     if (this->closestHit(ray, info)) {
         //color = info.mat_ptr->Kd;             //FASE 0 material esfera
         //color = (info.normal + 1.0f)/ 2.0f;   //FASE 0 normal esfera
-        color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
+        //color = vec3(1,1,1) * (info.t/2.0f);    //FASE 0 distancia esfera
+        color = this->shading(info, lookFrom);
+        if (depth < MAXDEPTH) {
+            Ray ref;
+            if (info.mat_ptr->getOneScatteredRay(ray, info, ref)) {
+                color += info.mat_ptr->getAttenuation(ray, info) * RayColor(lookFrom, ref, depth+1);
+            }
+        }
     }
-    // If we didn't hit any object, set color of the background
+    // Si no hemos intersectado con ningún objeto, le ponemos el color del background
     else {
-        color = this->colorDown*(1-height) + this->colorTop*height;
+        // Comprobamos si en las recursiones tenemos en cuenta el background o la luz ambiental
+        if (depth == 0 || backgroundInRecurvise || true) {
+            float height = 0.5*(normalize(ray.getDirection()).y + 1);
+            color = this->colorDown * (1-height) + this->colorTop * height;
+        }else {
+            color = globalLight;
+        }
     }
 
     return color;
@@ -124,18 +148,55 @@ void Scene::setTopBackground(vec3 color) {
 ** FASE 0: Càlcul de la il.luminació segons la distànica del punt a l'observador
 ** FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
 */
-vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
 
-    return vec3(1.0, 0.0, 0.0);
+vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
+    vec3 ca, cd, cs, L, V, H, I;
+    float attenuation, shadowFactor = 1.0f;
+
+    /* Blinn-Phong
+     * Itotal = Ia_Global * Ka + sum( atenuación * factorSombra * (difusa + especular) + ambiente
+     */
+    I = globalLight * info.mat_ptr->Ka;
+    for (int i = 0; i < lights.size(); i++) {
+        //attenuation = 0.5 + 0.01*pow(lights[i]->distanceToLight(info.p), 2);
+        attenuation = lights[i]->attenuation(info.p);
+        // Posición de luz
+        L = lights[i]->vectorL(info.p);
+        // Vector visión
+        V = normalize(lookFrom-info.p);
+        // H = (L + V ) / |(L + V)|
+        H = normalize(L + V);
+
+        shadowFactor = this->computeShadow(lights[i], info.p);
+        // Componente ambiente
+        ca = info.mat_ptr->Ka * lights[i]->getIa();
+        // Componente difusa
+        cd = info.mat_ptr->getDiffuse(info.uv) * lights[i]->getId() * fmax(dot(L, info.normal), 0.0f);
+        //Componente especular
+        cs = info.mat_ptr->Ks * lights[i]->getIs() * pow(fmaxf(dot(info.normal, H), 0.0f), info.mat_ptr->shininess);
+
+        I += shadowFactor * attenuation * (cd + cs) + ca;
+    }
+    return I;
 }
 
 /*
 ** TODO: Funcio RayColor es la funcio recursiva del RayTracing.
 ** FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
 */
-//float Scene::computeShadow(shared_ptr<Light> light, vec3 point) {
+float Scene::computeShadow(shared_ptr<Light> light, vec3 point) {
+    float shadowFactor = 1.0f;
+    Ray shadowRay(point, light->vectorL(point), 0.01f, light->distanceToLight(point));
+    HitInfo info;
+    // Comprobamos si hay algún obstáculo
+    if (this->closestHit(shadowRay, info)) {
+        // ignoramos la sombra si es un objeto transparente
+        if(dynamic_cast<Transparent*>(info.mat_ptr)) return shadowFactor;
+        shadowFactor = 0.0f;
+    }
 
-//}
+    return shadowFactor;
+}
 
 /*
  * TODO: FASE 2
@@ -143,6 +204,14 @@ vec3 Scene::shading(HitInfo& info, vec3 lookFrom) {
  * void setLights(std::vector<shared_ptr<Light>> lights) {}
  * void setGlobalLight(vec3 light);
  */
+
+void Scene::setLights(std::vector<shared_ptr<Light>> lights) {
+    this->lights = lights;
+}
+
+void Scene::setGlobalLight(vec3 light) {
+    this->globalLight = light;
+}
 
 
 

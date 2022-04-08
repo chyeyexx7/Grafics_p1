@@ -9,6 +9,7 @@ Controller::Controller(Serializable::SaveFormat format, QString dataFileName, QS
 
     // S'obté el tipus de factory a utilitzar segons el tipus d'escena (cas a o cas b)
     // definit en el fitxer json de l'escena (veure el camp "typeScene")
+
     auto factory = AbstractFactoryScenes::getInstance().getSceneFactory(format, dataFileName);
     shared_ptr<Scene> scene = factory->createScene(format, dataFileName);
 
@@ -27,7 +28,8 @@ Controller::Controller(Serializable::SaveFormat format, QString dataFileName, QS
         scene->setDownBackground(visualSetup->getDownBackground());
 
         // TODO: Fase 2: Afegim les llums de l'escena
-
+        scene->setGlobalLight(visualSetup->getGlobalLight());
+        scene->setLights(visualSetup->getLights());
 
         // ETAPA 3: Inicialitzacio del Rendering
         // usa un Factory Method per a construir el tipus de render

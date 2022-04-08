@@ -5,33 +5,33 @@
    "type": "FITTEDPLANE",
    "normal": [0.0, 1.0, 0.0],
    "point": [0.0, -1.0, 0.0],
-   "pmin": [-10.0, -10.0],
-   "pmax": [2.0, 2.0],
+   "pmin": [-50.0, -50.0],
+   "pmax": [50.0, 50.0],
    "material": {
-       "type": "MaterialTextura",
-       "ka": [0.2, 0.2, 0.2],
-       "kd": [0.7,0.6,0.5],
-       "ks": [0.7, 0.7, 0.7],
-       "shininess": 10.0,
-       "textureFile": "://resources/europa.png"
+   "type": "LAMBERTIAN",
+   "ka": [0.1, 0.1, 0.1],
+   "kd": [0.7,0.4,0.4],
+   "ks": [1.0, 1.0, 1.0],
+   "shininess": 500.0,
+   "textureFile": "://resources/europa.png"
     }
 },
 "Real": {
-  "minPoint": [-5, -5],
-  "maxPoint": [5, 5]
+  "minPoint": [-50, -50],
+  "maxPoint": [50, 50]
 },
 "Virtual": {
-  "minPoint": [-5,  0, -5],
-  "maxPoint": [ 5,  5,  5]
+  "minPoint": [-50,  0, -50],
+  "maxPoint": [ 50,  5,  50]
 },"properties": [
 {
 "name": "temperatura",
 "gyzmo": "sphere",
 "minValue": 0,
-"maxValue": 4,
+"maxValue": 3,
 "colorMap": "COLOR_MAP_TYPE_PLASMA",
 "material": {
-    "type": "lambertian",
+    "type": "metal",
     "ka": [0.2, 0.2, 0.2],
     "kd": [0.7,0.6,0.5],
     "ks": [0.7, 0.7, 0.7],

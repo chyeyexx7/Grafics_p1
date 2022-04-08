@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Modelling/Animation.h"
 #include "Modelling/TG/TranslateTG.h"
+#include "Modelling/TG/ScaleTG.h"
 #include "glm/gtx/constants.hpp"
 
 

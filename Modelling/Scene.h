@@ -7,8 +7,10 @@
 #include "Animation.h"
 #include "Modelling/Objects/Object.h"
 #include "Modelling/Objects/Sphere.h"
+#include "Modelling/Objects/FittedPlane.h"
 #include "Modelling/Materials/Material.h"
 #include "Modelling/Lights/Light.h"
+
 
 class Scene: public Hitable
 {
@@ -58,7 +60,7 @@ public:
 
     // TODO FASE 2:
     // Incloure bases a l'escena: FittedPlane
-    // void setBasePlane(shared_ptr<FittedPlane> plane);
+    void setBasePlane(shared_ptr<FittedPlane> plane) {baseObj = plane;};
 
     // AMPLIACIO: Posible objecte que no sigui un fitted plane: una esfera
     // void setBaseSphere(shared_ptr<Sphere> sphere);
@@ -77,22 +79,27 @@ public:
 
     // Vector d'objectes continguts a l'escena
     std::vector<shared_ptr<Object>> objects;
+
     // FASE 2: Afegir llums a l'escena i la il.luminació global
     // Implementar els mètodes següents
     // Recordar cridar-los per omplir les dades des de fitxer
-
-    // void setGlobalLight(vec3 light);
-    // void setLights(std::vector<shared_ptr<Light>> lights);
+    // Base de la escena usando un fitted plane
+    shared_ptr<FittedPlane> baseObj;
+    void setGlobalLight(vec3 light);
+    void setLights(std::vector<shared_ptr<Light>> lights);
 
 private:
     // FASE 1: Càlcul de la il.luminació en un punt (Blinn-Phong i ombres)
     vec3 shading(HitInfo& info, vec3 lookFrom);
 
+
     //Llum ambient global
     vec3 globalLight;
+    //lights
+    std::vector<shared_ptr<Light>> lights;
 
     // FASE 2: Calcula si el punt "point" és a l'ombra
-    // float computeShadow(shared_ptr<Light> light, vec3 point);
+    float computeShadow(shared_ptr<Light> light, vec3 point);
 
     //Guarda si en les iteracions recursives de rayColor() en cas de no haver-hi hit
     // s'utilitza el color

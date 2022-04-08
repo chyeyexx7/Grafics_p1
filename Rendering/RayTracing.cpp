@@ -20,13 +20,20 @@ void RayTracing::rendering() {
 
             vec3 col(0, 0, 0);
 
-            float u = (float(x)) / float(cam->viewportX);
-            float v = (float(y)) / float(cam->viewportY);
+            // Antialiasing x10
+            for (int i = 0; i < maxNumSamples; i++){
+                float u = (float(x) + glm::linearRand(-0.5f, 0.5f)) / float(cam->viewportX);
+                float v = (float(y) + glm::linearRand(-0.5f, 0.5f)) / float(cam->viewportY);
 
-            Ray r = cam->getRay(u, v);
+                Ray r = cam->getRay(u, v);
 
-            col = scene->RayColor(cam->getLookFrom(), r, 0);
-
+                col += scene->RayColor(cam->getLookFrom(), r, 0);
+            }
+            col /= maxNumSamples;
+            // Poner los colores en rango [0,1]
+            col = glm::clamp(col, 0, 1);
+            // Gamma correction
+            col = sqrt(col);
             setPixelColor(col, x, y);
         }
     }

@@ -1,5 +1,5 @@
 {
-"renderType": "ONLINE",
+"renderType": "IMAGE",
 "output": "resultat.ppm",
 "camera": {
     "lookFrom": [-2.0, 2.0, 3.0],
@@ -9,17 +9,17 @@
     "aspectRatio": 2.0,
     "pixelsX": 600
 },
-"globalLight": [ 0.7, 0.7, 0.7],
+"globalLight": [ 0.1, 0.1, 0.1],
 "lights" : [
 {
  "type": "pointLight",
   "Ia": [0.3, 0.3, 0.3],
   "Id": [0.7, 0.7, 0.7],
   "Is": [1.0, 1.0, 1.0],
-  "a": 0.0,
+  "a": 1.0,
   "b": 0.0,
-  "c": 0.5,
-  "position": [0, -50, 0]
+  "c": 0.0,
+  "position": [-7, 13, 0]
   }
  ],
  "background": true,

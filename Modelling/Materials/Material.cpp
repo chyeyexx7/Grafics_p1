@@ -39,6 +39,7 @@ vec3 Material::getDiffuse(vec2 point) const {
     return Kd;
 }
 
+
 void Material::read (const QJsonObject &json)
 {
     if (json.contains("ka") && json["ka"].isArray()) {
@@ -59,6 +60,7 @@ void Material::read (const QJsonObject &json)
         Ks[1] = auxVec[1].toDouble();
         Ks[2] = auxVec[2].toDouble();
     }
+
     if (json.contains("shininess") && json["shininess"].isDouble())
         shininess = json["shininess"].toDouble();
     if (json.contains("opacity") && json["opacity"].isDouble())
@@ -80,6 +82,7 @@ void Material::write(QJsonObject &json) const
 
     QJsonArray auxArray3;
     auxArray3.append(Ks[0]);auxArray3.append(Ks[1]);auxArray3.append(Ks[2]);
+
     json["ks"] = auxArray3;
     json["opacity"] = opacity;
     json["shininess"] = shininess;

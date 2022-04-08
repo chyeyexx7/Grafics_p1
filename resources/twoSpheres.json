@@ -5,7 +5,7 @@
 {
   "name": "Esfera petita",
   "type": "sphere",
-  "center": [0.0, 0.0, 0.0],
+  "center": [0.0, 0.0, -1.0],
   "radius": 0.5,
   "material": {
     "type": "lambertian",
@@ -30,6 +30,36 @@
     "shininess": 10.0,
     "kt": [0.0, 0.0, 0.0],
     "nut": 0.0
+    }
+},
+{
+  "name": "Esfera metalica",
+  "type": "sphere",
+  "center": [-3.0, 1.0, 0.0],
+  "radius": 1.0,
+  "material": {
+    "type": "metal",
+    "ka": [0.2, 0.2, 0.2],
+    "kd": [0.7, 0.6, 0.5],
+    "ks": [0.7, 0.7, 0.7],
+    "shininess": 10.0,
+    "kt": [0.0, 0.0, 0.0],
+    "nut": 0.0
+    }
+},
+{
+  "name": "Esfera transparente",
+  "type": "sphere",
+  "center": [0.0, 1.0, 0.0],
+  "radius": 1.0,
+  "material": {
+    "type": "transparent",
+    "ka": [0.2, 0.2, 0.2],
+    "kd": [0.7, 0.6, 0.5],
+    "ks": [0.7, 0.7, 0.7],
+    "shininess": 10.0,
+    "kt": [1.0, 1.0, 1.0],
+    "nut": 1.5
     }
 }
 ]

@@ -16,6 +16,7 @@
 #include "Object.h"
 #include "Factories/ObjectFactory.h"
 #include "Cara.h"
+#include "Triangle.h"
 
 using namespace std;
 
@@ -37,10 +38,10 @@ public:
    virtual ~Mesh();
 private:
 
-
     QString nom;
     vector<Cara> cares; // cares de l'objecte
     vector<vec4> vertexs; // vertexs de l'objecte sense repetits
+    vector<Triangle> triangles; // triangulos del objeto
 
     void load(QString filename);
     void construeix_triangles();

@@ -1,6 +1,6 @@
 {
 "renderType": "IMAGE",
-"output": "resultatEuropa.ppm",
+"output": "resultat.ppm",
 "camera": {
     "lookFrom": [0.0, 15.0, 30.0],
     "lookAt:": [0, 0, 0],
@@ -13,51 +13,41 @@
         "aperture": 0.0
     }
 },
-"globalLight": [ 0.7, 0.7, 0.7],
+"globalLight": [ 0.2, 0.2, 0.2],
 "lights" : [
 {
  "type": "pointLight",
-  "Ia": [0.3, 0.3, 0.3],
-  "Id": [0.7, 0.7, 0.7],
-  "Is": [1.0, 1.0, 1.0],
-  "a": 0.0,
-  "b": 0.0,
-  "c": 0.5,
-  "position": [0, -50, 0]
+  "Ia": [0.1, 0.1, 0.1],
+  "Id": [0.5, 0.5, 0.5],
+  "Is": [0.5, 0.5, 0.5],
+  "a": 0.01,
+  "b": 0.01,
+  "c": 0.01,
+  "position": [-5, 20, 10]
   },
   {
-  "type": "directionalLight",
-   "Ia": [0.0, 0.0, 0.0],
-   "Id": [0.7, 0.7, 0.7],
-   "Is": [1.0, 1.0, 1.0],
-   "direction": [0, -1, 0]
-   },
+  "type": "pointLight",
+  "Ia": [0.1, 0.1, 0.1],
+  "Id": [0.5, 0.5, 0.5],
+  "Is": [0.5, 0.5, 0.5],
+  "a": 0.01,
+  "b": 0.01,
+  "c": 0.01,
+  "position": [2, 8, -50]
+  },
   {
-  "type": "spotLight",
-   "Ia": [0.0, 0.0, 0.0],
-   "Id": [0.7, 0.7, 0.7],
-   "Is": [1.0, 1.0, 1.0],
-   "a": 0.0,
-   "b": 0.0,
-   "c": 0.0,
-   "position": [0, 50, 0],
-   "direction": [0, -1, 0],
-   "theta": 45.0
-   },
-   {
-   "type": "areaLight",
-    "Ia": [0.0, 0.0, 0.0],
-    "Id": [0.7, 0.7, 0.7],
-    "Is": [1.0, 1.0, 1.0],
-    "a": 0.0,
-    "b": 0.0,
-    "c": 0.25,
-    "position": [0, 50, 0],
-    "numLights": 10
-    }
+  "type": "pointLight",
+  "Ia": [0.1, 0.1, 0.1],
+  "Id": [0.5, 0.5, 0.5],
+  "Is": [0.5, 0.5, 0.5],
+  "a": 0.01,
+  "b": 0.01,
+  "c": 0.01,
+  "position": [2, 8, 10]
+  }
  ],
-  "background": true,
-  "MAXDEPTH": 4,
+  "background": false,
+  "MAXDEPTH": 10,
   "colorTopBackground": [ 1, 1, 1],
   "colorDownBackground": [0.5, 0.7, 1]
  }

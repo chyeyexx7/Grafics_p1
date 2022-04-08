@@ -29,6 +29,7 @@ bool SetUp::load(Serializable::SaveFormat saveFormat, QString nameFile)
         return false;
     }
     QJsonObject object = loadDoc.object();
+
     read(object);
 
     QTextStream(stdout) << "Loaded setup using "
@@ -104,8 +105,9 @@ void SetUp::read(const QJsonObject &json)
         downBackground[1] = globalVec[1].toDouble();
         downBackground[2] = globalVec[2].toDouble();
     }
-    if (json.contains("MAXDEPTH") && json["MAXDEPTH"].isDouble())
+    if (json.contains("MAXDEPTH") && json["MAXDEPTH"].isDouble()) {
         MAXDEPTH = json["MAXDEPTH"].toInt();
+    }
 }
 //! [0]
 
