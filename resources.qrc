@@ -66,36 +66,36 @@
         <file>resources/setupDataEuropaFase3.json</file>
         <file>resources/data10Fase1.json</file>
         <file>resources/setupData10.json</file>
-        <file>Images/fase1Cylinder.ppm</file>
-        <file>Images/fase1Data10.ppm</file>
-        <file>Images/fase1Mesh.ppm</file>
-        <file>Images/fase1Triangles.ppm</file>
-        <file>Images/fase2A1.ppm</file>
-        <file>Images/fase2A2.ppm</file>
-        <file>Images/fase2A3.ppm</file>
-        <file>Images/fase2Ba.ppm</file>
-        <file>Images/fase2Bb.ppm</file>
-        <file>Images/fase2Bc.ppm</file>
-        <file>Images/fase2BCornellBox.ppm</file>
-        <file>Images/fase2Bd.ppm</file>
-        <file>Images/fase2Be.ppm</file>
-        <file>Images/fase2Bf.ppm</file>
-        <file>Images/fase2Bg.ppm</file>
-        <file>Images/fase2Bh.ppm</file>
-        <file>Images/fase2Bi10figures.ppm</file>
-        <file>Images/fase2C2.ppm</file>
-        <file>Images/fase2C2depth1.ppm</file>
-        <file>Images/fase2C2depth10.ppm</file>
-        <file>Images/fase2C4depth1.ppm</file>
-        <file>Images/fase2C4depth10.ppm</file>
-        <file>Images/fase2D2depth1.ppm</file>
-        <file>Images/fase2D2depth4.ppm</file>
-        <file>Images/fase2D3depth4.ppm</file>
-        <file>Images/fase2EdadesBCN.ppm</file>
-        <file>Images/fase2EdadesMetal.ppm</file>
-        <file>Images/fase2EdadesTransparent.ppm</file>
-        <file>Images/fase3A1.ppm</file>
-        <file>Images/fase3A2.ppm</file>
-        <file>Images/fase3A3.ppm</file>
+        <file>Images/fase1Cylinder.png</file>
+        <file>Images/fase1Data10.png</file>
+        <file>Images/fase1Mesh.png</file>
+        <file>Images/fase1Triangles.png</file>
+        <file>Images/fase2A1.png</file>
+        <file>Images/fase2A2.png</file>
+        <file>Images/fase2A3.png</file>
+        <file>Images/fase2Ba.png</file>
+        <file>Images/fase2Bb.png</file>
+        <file>Images/fase2Bc.png</file>
+        <file>Images/fase2BCornellBox.png</file>
+        <file>Images/fase2Bd.png</file>
+        <file>Images/fase2Be.png</file>
+        <file>Images/fase2Bf.png</file>
+        <file>Images/fase2Bg.png</file>
+        <file>Images/fase2Bh.png</file>
+        <file>Images/fase2Bi10figures.png</file>
+        <file>Images/fase2C2.png</file>
+        <file>Images/fase2C2depth1.png</file>
+        <file>Images/fase2C2depth10.png</file>
+        <file>Images/fase2C4depth1.png</file>
+        <file>Images/fase2C4depth10.png</file>
+        <file>Images/fase2D2depth1.png</file>
+        <file>Images/fase2D2depth4.png</file>
+        <file>Images/fase2D3depth4.png</file>
+        <file>Images/fase2EdadesBCN.png</file>
+        <file>Images/fase2EdadesMetal.png</file>
+        <file>Images/fase2EdadesTransparent.png</file>
+        <file>Images/fase3A1.png</file>
+        <file>Images/fase3A2.png</file>
+        <file>Images/fase3A3.png</file>
     </qresource>
 </RCC>
