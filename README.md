@@ -174,7 +174,7 @@ Ahora probamos los datos `spheresLambertianes.json` y setup `setupRenderSpheres.
 
 ![fase2Bh](https://user-images.githubusercontent.com/72078368/162375792-672b64c4-df53-4b5a-ad20-b59b9e35ef90.png)
 
-Creando una escena más compleja que contiene 10 objetos:
+Creando una escena más compleja que contiene 10 objetos con los datos `figuresLambiertianes` y setup `setupRenderFiguresLambertian`:
 
 ![fase2Bi10figures](https://user-images.githubusercontent.com/72078368/162375848-18194d7c-88ae-4e2c-8f11-8f29b69ac6e3.png)
 
