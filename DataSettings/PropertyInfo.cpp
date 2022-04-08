@@ -4,8 +4,7 @@ PropertyInfo::PropertyInfo()
 {
 }
 
-
-
+#include <iostream>
 //! [0]
 void PropertyInfo::read(const QJsonObject &json)
 {

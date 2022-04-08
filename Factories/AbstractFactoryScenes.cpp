@@ -47,6 +47,7 @@ shared_ptr<SceneFactory> AbstractFactoryScenes::getSceneFactory(Serializable::Sa
             sf = make_shared<SceneFactoryVirtual>();
             break;
         }
+
         QTextStream(stdout) << "Loaded format of the scene using "
                             << (saveFormat != Serializable::Json ? "CBOR" : "JSON") << "...\n";
         return sf;

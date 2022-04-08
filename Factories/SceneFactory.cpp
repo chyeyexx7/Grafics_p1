@@ -1,6 +1,6 @@
 #include "SceneFactory.h"
 
-
+#include <iostream>
 SceneFactory::SCENE_TYPES SceneFactory::getSceneFactoryType( QString name) {
     if (name=="VIRTUALWORLD") return SCENE_TYPES::VIRTUALWORLD;
     else if (name=="REALDATA") return SCENE_TYPES::REALDATA;

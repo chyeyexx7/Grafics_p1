@@ -67,6 +67,10 @@ void Sphere::aplicaTG(shared_ptr<TG> t) {
         c = t->getTG() * c;
         center.x = c.x; center.y = c.y; center.z = c.z;
     }
+    if (dynamic_pointer_cast<ScaleTG>(t)) {
+        float c = t->getTG()[0][0];
+        this->radius = this->radius* c;
+    }
 }
 
 void Sphere::read (const QJsonObject &json)

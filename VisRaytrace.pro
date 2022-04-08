@@ -30,10 +30,11 @@ SOURCES += \
         Main.cpp \
         Modelling/Animation.cpp \
         Modelling/Hitable.cpp \
-        Modelling/Materials/MaterialTexture.cpp \
+        Modelling/Materials/MaterialTextura.cpp \
         Modelling/Materials/Metal.cpp \
         Modelling/Materials/Transparent.cpp \
         Modelling/Objects/Cylinder.cpp \
+        Modelling/Objects/FittedPlane.cpp \
         Modelling/Objects/Mesh.cpp \
         Modelling/Objects/Triangle.cpp \
         Modelling/Scene.cpp \
@@ -47,6 +48,7 @@ SOURCES += \
         Modelling/Objects/Object.cpp \
         Modelling/Objects/Plane.cpp \
         Modelling/Objects/Sphere.cpp \
+        Modelling/TG/ScaleTG.cpp \
         Modelling/TG/TG.cpp \
         Modelling/TG/TranslateTG.cpp \
         Rendering/Camera.cpp \
@@ -92,12 +94,13 @@ HEADERS += \
     Modelling/Materials/ColorMapStatic.h \
     Modelling/Materials/Lambertian.h \
     Modelling/Materials/Material.h \
-    Modelling/Materials/MaterialTexture.h \
+    Modelling/Materials/MaterialTextura.h \
     Modelling/Materials/Metal.h \
     Modelling/Materials/Texture.h \
     Modelling/Materials/Transparent.h \
     Modelling/Objects/Cara.h \
     Modelling/Objects/Cylinder.h \
+    Modelling/Objects/FittedPlane.h \
     Modelling/Objects/Mesh.h \
     Modelling/Objects/Object.h \
     Modelling/Objects/Plane.h \
@@ -105,6 +108,7 @@ HEADERS += \
     Modelling/Objects/Triangle.h \
     Modelling/Ray.h \
     Modelling/Scene.h \
+    Modelling/TG/ScaleTG.h \
     Modelling/TG/TG.h \
     Modelling/TG/TranslateTG.h \
     Rendering/Camera.h \

@@ -24,20 +24,19 @@ vec3 Transparent::getAttenuation(const Ray& r_in, const HitInfo& rec) const  {
 
 bool Transparent::getOneScatteredRay(const Ray& r_in, const HitInfo& rec, Ray& r_out) const  {
     vec3 target;
-    vec3 normal = rec.normal;
+    vec3 normal = normalize(rec.normal);
     vec3 dir = normalize(r_in.getDirection());
-    float ratio;
+    float ratio = nut / 1.0003f;
 
     // Si el producto escalar es positivo, invertimos el índice de reflexión y normal
     if (dot(dir, normal) > 0) {
         normal = -normal;
-        ratio = nut / 1.0003f;
     } else {
         ratio = 1.0003f / nut;
     }
     target = refract(dir, normal, ratio);
     // Si es < EPSILON, entonces es interna total
-    if (length(target) < 0.01f) {
+    if (length(target) < FLT_EPSILON) {
         intern = true;
         target = reflect(dir, normal);
     }
@@ -54,6 +53,7 @@ bool Transparent::getMultipleScatteredRays(const Ray& r_in, const HitInfo& rec, 
     return true;
 }
 
+
 void Transparent::read(const QJsonObject& json) {
     Material::read(json);
     if (json.contains("kt") && json["kt"].isArray()) {
@@ -64,5 +64,27 @@ void Transparent::read(const QJsonObject& json) {
     }
     if (json.contains("nut") && json["nut"].isDouble())
         nut = json["nut"].toDouble();
+}
+
+void Transparent::write(QJsonObject &json) const
+{
+    QJsonArray auxArray;
+    auxArray.append(Kt[0]);auxArray.append(Kt[1]);auxArray.append(Kt[2]);
+    json["kt"] = auxArray;
+
+    json["nut"] = nut;
+}
+
+//! [1]
+
+void Transparent::print(int indentation) const
+{
+    Material::print(indentation);
+
+    const QString indent(indentation * 2, ' ');
+
+    QTextStream(stdout) << indent << "Kt:\t" << Kt[0] << ", "<< Kt[1] << ", "<< Kt[2] << "\n";
+    QTextStream(stdout) << indent << "nut:\t" << nut << "\n";
+
 }
 

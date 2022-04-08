@@ -9,6 +9,7 @@ Controller::Controller(Serializable::SaveFormat format, QString dataFileName, QS
 
     // S'obté el tipus de factory a utilitzar segons el tipus d'escena (cas a o cas b)
     // definit en el fitxer json de l'escena (veure el camp "typeScene")
+
     auto factory = AbstractFactoryScenes::getInstance().getSceneFactory(format, dataFileName);
     shared_ptr<Scene> scene = factory->createScene(format, dataFileName);
 

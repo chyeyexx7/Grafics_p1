@@ -5,6 +5,7 @@
 #include "Sphere.h"
 #include "Modelling/Animation.h"
 #include "Modelling/TG/TranslateTG.h"
+#include "Modelling/TG/ScaleTG.h"
 
 class Cylinder: public Object
 {

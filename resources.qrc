@@ -38,5 +38,64 @@
         <file>resources/luigi.obj</file>
         <file>resources/mario.obj</file>
         <file>resources/teapot2.obj</file>
+        <file>resources/dadesBCN_Zoom.json</file>
+        <file>resources/dadesBCN_ZoomTexture.json</file>
+        <file>resources/dadesBCNMetal.json</file>
+        <file>resources/dadesBCNMetalTexture.json</file>
+        <file>resources/dadesBCNOneValueTexture.json</file>
+        <file>resources/dadesBCNTexture.json</file>
+        <file>resources/dadesBCNTransparent.json</file>
+        <file>resources/dadesBCNTransparentTexture.json</file>
+        <file>resources/setupDataBCN_Zoom.json</file>
+        <file>resources/setupDataBCNMetal.json</file>
+        <file>resources/setupDataBCNTransparent.json</file>
+        <file>resources/bigSphere.mtl</file>
+        <file>resources/bigSphere2.mtl</file>
+        <file>resources/common-cockle.mtl</file>
+        <file>resources/cruiser.mtl</file>
+        <file>resources/dadesEuropaFase3.json</file>
+        <file>resources/dadesEuropaTextured.json</file>
+        <file>resources/f16.mtl</file>
+        <file>resources/Monkey.mtl</file>
+        <file>resources/MonkeyTex.mtl</file>
+        <file>resources/README.fst</file>
+        <file>resources/sphere0.mtl</file>
+        <file>resources/sphere1.mtl</file>
+        <file>resources/sphereSky.mtl</file>
+        <file>resources/teapot2.mtl</file>
+        <file>resources/setupDataEuropaFase3.json</file>
+        <file>resources/data10Fase1.json</file>
+        <file>resources/setupData10.json</file>
+        <file>Images/fase1Cylinder.ppm</file>
+        <file>Images/fase1Data10.ppm</file>
+        <file>Images/fase1Mesh.ppm</file>
+        <file>Images/fase1Triangles.ppm</file>
+        <file>Images/fase2A1.ppm</file>
+        <file>Images/fase2A2.ppm</file>
+        <file>Images/fase2A3.ppm</file>
+        <file>Images/fase2Ba.ppm</file>
+        <file>Images/fase2Bb.ppm</file>
+        <file>Images/fase2Bc.ppm</file>
+        <file>Images/fase2BCornellBox.ppm</file>
+        <file>Images/fase2Bd.ppm</file>
+        <file>Images/fase2Be.ppm</file>
+        <file>Images/fase2Bf.ppm</file>
+        <file>Images/fase2Bg.ppm</file>
+        <file>Images/fase2Bh.ppm</file>
+        <file>Images/fase2Bi10figures.ppm</file>
+        <file>Images/fase2C2.ppm</file>
+        <file>Images/fase2C2depth1.ppm</file>
+        <file>Images/fase2C2depth10.ppm</file>
+        <file>Images/fase2C4depth1.ppm</file>
+        <file>Images/fase2C4depth10.ppm</file>
+        <file>Images/fase2D2depth1.ppm</file>
+        <file>Images/fase2D2depth4.ppm</file>
+        <file>Images/fase2D3depth4.ppm</file>
+        <file>Images/fase2EdadesBCN.ppm</file>
+        <file>Images/fase2EdadesMetal.ppm</file>
+        <file>Images/fase2EdadesTransparent.ppm</file>
+        <file>Images/fase3A1.ppm</file>
+        <file>Images/fase3A2.ppm</file>
+        <file>Images/fase3A3.ppm</file>
     </qresource>
 </RCC>

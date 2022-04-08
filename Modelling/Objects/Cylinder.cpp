@@ -8,13 +8,12 @@ Cylinder::Cylinder(vec3 cen, vec3 ax, float r, float h, float data) : Object(dat
 }
 
 Cylinder::Cylinder(float data) : Object(data) {
-    center = vec3(0.0, 0.0, 0.0);
+    center = vec3(0.0, -1.0, 0.0);
     axis = vec3(0.0, 1.0, 0.0);
-    radius = 2.0f;
-    h = 4.0f;
+    radius = 1.0f;
+    h = 2.0f;
 }
 
-# include <iostream>
 bool Cylinder::closestHit(Ray &raig, HitInfo& info) const {
     /**
      * https://inmensia.com/articulos/raytracing/cilindroycono.html
@@ -192,7 +191,15 @@ bool Cylinder::hasHit (const Ray& raig) const {
 }
 
 void Cylinder::aplicaTG(shared_ptr<TG> t) {
+    if (dynamic_pointer_cast<TranslateTG>(t)) {
+        vec4 c(center, 1.0);
+        c = t->getTG() * c;
 
+        center.x = c.x; center.y = c.y; center.z = c.z;
+    }
+    else if(dynamic_pointer_cast<ScaleTG>(t)){
+        h *= t->getTG()[0][0];
+    }
 }
 
 void Cylinder::read (const QJsonObject &json)

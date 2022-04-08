@@ -5,6 +5,7 @@ SceneFactoryVirtual::SceneFactoryVirtual():SceneFactory()
 {
 }
 
+#include <iostream>
 shared_ptr<Scene> SceneFactoryVirtual::createScene(Serializable::SaveFormat saveFormat,
                                                    QString filename) {
 
@@ -51,9 +52,10 @@ bool SceneFactoryVirtual::load(SceneFactory::SaveFormat saveFormat, QString name
 
     QByteArray saveData = loadFile.readAll();
     QJsonParseError error;
-    QJsonDocument loadDoc(/*saveFormat == Json
-        ? */QJsonDocument::fromJson(saveData, &error)
-        /*: QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject())*/);
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData, &error));
+    /*QJsonDocument loadDoc(saveFormat == Json
+        ? QJsonDocument::fromJson(saveData, &error)
+        : QJsonDocument(QCborValue::fromCbor(saveData).toMap().toJsonObject()));*/
 
 
     if (loadDoc.isNull()) {
@@ -83,9 +85,10 @@ bool SceneFactoryVirtual::save(Serializable::SaveFormat saveFormat, QString name
 
     QJsonObject setUpObject;
     write(setUpObject);
-    saveFile.write(/*saveFormat == Json
-        ? */QJsonDocument(setUpObject).toJson()
-        /*: QCborValue::fromJsonValue(setUpObject).toCbor()*/);
+    saveFile.write(QJsonDocument(setUpObject).toJson());
+    /*saveFile.write(saveFormat == Json
+        ? QJsonDocument(setUpObject).toJson()
+        : QCborValue::fromJsonValue(setUpObject).toCbor());*/
 
     return true;
 }

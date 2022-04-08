@@ -1,7 +1,5 @@
 #include "Plane.h"
 
-#include <iostream>
-
 Plane::Plane(vec3 normal, vec3 pass_point, float v) : Object(v){
     this->normal = normalize(normal);
     this->point = pass_point;
@@ -24,7 +22,7 @@ bool Plane::closestHit(Ray &raig, HitInfo &info) const{
     // Comprovem si el normal al pla i el raig son ortogonals.
     // En aquest cas son paralels i no hi ha interseccio
 
-    if(abs(dot(raig.getDirection(), normal))<DBL_EPSILON){
+    if(abs(dot(raig.getDirection(), normal)) < DBL_EPSILON){
         return false;
     }
 
@@ -48,7 +46,7 @@ bool Plane::closestHit(Ray &raig, HitInfo &info) const{
     temp/= normal[0]*vp[0] + normal[1]*vp[1] + normal[2]*vp[2];
 
     // Retornem false si no estem en el rang demanat
-    if (temp < raig.getTmax() || temp > raig.getTmin()) {
+    if (temp > raig.getTmax() || temp < raig.getTmin()) {
         return false;
     }
 

@@ -250,7 +250,7 @@ namespace glm
 		detail::tvec4<T> const & x
 	)
 	{
-		GLM_STATIC_ASSERT(detail::type<T>::is_float, "'normalize' only accept floating-point inputs");
+        GLM_STATIC_ASSERT(detail::type<T>::is_float, "'normalize' only accept floating-point inputs");
 		
 		typename detail::tvec4<T>::value_type sqr = x.x * x.x + x.y * x.y + x.z * x.z + x.w * x.w;
 		return x * inversesqrt(sqr);

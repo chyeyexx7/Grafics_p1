@@ -67,6 +67,32 @@ bool Triangle::hasHit (const Ray& raig) const {
 }
 
 void Triangle::aplicaTG(shared_ptr<TG> t) {
+    vec4 A(p1, 1.0f), B(p2, 1.0f), C(p3, 1.0f);
+    if (dynamic_pointer_cast<TranslateTG>(t)) {
+        // Transformamos los 3 puntos
+        A = t->getTG() * A;
+        B = t->getTG() * B;
+        C = t->getTG() * C;
+
+        p1.x = A.x; p1.y = A.y; p1.z = A.z;
+        p2.x = B.x; p2.y = B.y; p2.z = B.z;
+        p3.x = C.x; p3.y = C.y; p3.z = C.z;
+    }
+
+    if (dynamic_pointer_cast<ScaleTG>(t)) {
+        // Escalamos los tres puntos
+        A = t->getTG() * A;
+        C = t->getTG() * B;
+        B = t->getTG() * C;
+
+        float factorA = p1.x / A.x;
+        float factorB = p2.x / B.x;
+        float factorC = p3.x / C.x;
+
+        p1.x * factorA; p1.y * factorA; p1.z * factorA;
+        p2.x * factorB; p2.y * factorB; p2.z * factorB;
+        p3.x * factorC; p3.y * factorC; p3.z * factorC;
+    }
 
 }
 

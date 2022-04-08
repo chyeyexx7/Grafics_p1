@@ -10,7 +10,7 @@
 #include "Object.h"
 #include "Modelling/Animation.h"
 #include "Modelling/TG/TranslateTG.h"
-
+#include "Modelling/TG/ScaleTG.h"
 class Sphere: public Object  {
 public:
     Sphere() {};

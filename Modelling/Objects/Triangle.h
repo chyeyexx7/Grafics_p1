@@ -6,6 +6,7 @@
 #include "Modelling/Animation.h"
 #include "Modelling/Objects/Plane.h"
 #include "Modelling/TG/TranslateTG.h"
+#include "Modelling/TG/ScaleTG.h"
 
 class Triangle: public Object
 {

@@ -24,6 +24,7 @@ shared_ptr<Material> Object::getMaterial() {
     return material;
 }
 
+#include <iostream>
 void Object::read (const QJsonObject &json)
 {
     if (json.contains("material") && json["material"].isObject()) {

@@ -6,6 +6,7 @@
 #include "Modelling/Objects/Cylinder.h"
 #include "Modelling/Objects/Triangle.h"
 #include "Modelling/Objects/Mesh.h"
+#include "Modelling/Objects/FittedPlane.h"
 
 
 

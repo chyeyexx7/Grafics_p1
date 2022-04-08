@@ -131,6 +131,7 @@ void Mesh::load (QString fileName) {
     } else  qWarning("Boundary object file not found.");
 }
 
+
 void Mesh::read (const QJsonObject &json)
 {
     Object::read(json);
